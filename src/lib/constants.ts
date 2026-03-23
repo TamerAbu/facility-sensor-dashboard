@@ -49,6 +49,18 @@ export const STATUS_LABELS = {
   faulty: 'Faulty',
 } as const;
 
+// UI labels
+export const UI_LABELS = {
+  INVENTORY_ASSET: 'Inventory Asset',
+  AVG_TEMPERATURE: 'Avg Temperature',
+  AVG_MOISTURE: 'Avg Moisture',
+  NOMINAL_OPERATION: 'Nominal Operation',
+  INSPECT: 'Inspect',
+  PILE_MONITORING: 'Pile Monitoring',
+  PROBLEM_SENSORS: 'Problem Sensor',
+  ACTIVE_PILES: 'Active Piles',
+} as const;
+
 // Grain types
 export const GRAIN_TYPES = {
   WHEAT: 'Wheat',
