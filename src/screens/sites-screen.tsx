@@ -1,0 +1,64 @@
+import { Activity } from 'lucide-react';
+
+import { SITE } from '@/lib/mock-data';
+import { processSiteData } from '@/lib/risk-engine';
+import { PileCard } from '@/features/sites/pile-card';
+
+const SEVERITY_ORDER: Record<string, number> = {
+  critical: 0,
+  warning: 1,
+  ok: 2,
+};
+
+export const SitesScreen = () => {
+  const processedPiles = processSiteData(SITE.piles);
+  const sortedPiles = [...processedPiles].sort(
+    (a, b) => SEVERITY_ORDER[a.status] - SEVERITY_ORDER[b.status],
+  );
+
+  const criticalCount = sortedPiles.filter(
+    (p) => p.status === 'critical',
+  ).length;
+  const warningCount = sortedPiles.filter((p) => p.status === 'warning').length;
+  const okCount = sortedPiles.filter((p) => p.status === 'ok').length;
+
+  return (
+    <div>
+      <div className="mb-8 flex items-start justify-between">
+        <div>
+          <h2 className="text-2xl font-bold tracking-tight">Pile Monitoring</h2>
+          <p className="mt-1 text-sm text-text-secondary">
+            {SITE.name} · {SITE.address}
+          </p>
+        </div>
+        <div className="flex items-center gap-4 rounded-xl bg-surface px-4 py-2.5 shadow-sm ring-1 ring-border/50">
+          <Activity className="h-4 w-4 text-accent" />
+          <div className="flex items-center gap-3 text-[12px] font-semibold">
+            {criticalCount > 0 && (
+              <span className="flex items-center gap-1.5 text-status-critical">
+                <span className="h-2 w-2 animate-pulse rounded-full bg-status-critical" />
+                {criticalCount} Critical
+              </span>
+            )}
+            {warningCount > 0 && (
+              <span className="flex items-center gap-1.5 text-status-warning">
+                <span className="h-2 w-2 rounded-full bg-status-warning" />
+                {warningCount} Warning
+              </span>
+            )}
+            <span className="flex items-center gap-1.5 text-status-ok">
+              <span className="h-2 w-2 rounded-full bg-status-ok" />
+              {okCount} OK
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+        {sortedPiles.map((pile) => (
+          <PileCard key={pile.id} pile={pile} />
+        ))}
+      </div>
+    </div>
+  );
+};

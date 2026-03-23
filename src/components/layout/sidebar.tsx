@@ -1,10 +1,10 @@
 'use client';
 
 import {
-  BellRing,
   MapPin,
   PanelLeftClose,
   PanelLeftOpen,
+  TriangleAlert,
   Warehouse,
 } from 'lucide-react';
 import { useState } from 'react';
@@ -71,7 +71,7 @@ export const Sidebar = ({ alertCount, siteName, children }: SidebarProps) => {
           />
           <NavLink
             href="/alerts"
-            icon={<BellRing className="h-[18px] w-[18px]" />}
+            icon={<TriangleAlert className="h-[18px] w-[18px]" />}
             label="Alerts"
             badge={alertCount}
             collapsed={collapsed}
