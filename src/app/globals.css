@@ -118,3 +118,131 @@ body {
 .pile-card:hover {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
+
+/* Sensor layer blueprint grid */
+.sensor-layer-grid {
+  background-color: var(--surface);
+  background-image:
+    linear-gradient(rgba(59, 130, 246, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.06) 1px, transparent 1px);
+  background-size: 10% 10%;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 0 30px rgba(0, 0, 0, 0.03),
+    0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* Sensor dot */
+.sensor-dot {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid var(--surface);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.1),
+    0 2px 6px rgba(0, 0, 0, 0.12);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+  cursor: pointer;
+}
+
+.sensor-dot:hover {
+  transform: scale(1.2);
+  box-shadow:
+    0 0 0 2px rgba(0, 0, 0, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 20;
+}
+
+.sensor-dot[data-status='ok'] {
+  background: var(--status-ok);
+}
+.sensor-dot[data-status='warning'] {
+  background: var(--status-warning);
+}
+.sensor-dot[data-status='critical'] {
+  background: var(--status-critical);
+  animation: dot-pulse 2s ease-in-out infinite;
+}
+.sensor-dot[data-status='faulty'] {
+  background: var(--status-faulty);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 3px,
+    rgba(255, 255, 255, 0.4) 3px,
+    rgba(255, 255, 255, 0.4) 6px
+  );
+}
+
+@keyframes dot-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px rgba(0, 0, 0, 0.1),
+      0 2px 6px rgba(0, 0, 0, 0.12);
+  }
+  50% {
+    box-shadow:
+      0 0 0 4px rgba(239, 68, 68, 0.25),
+      0 2px 6px rgba(0, 0, 0, 0.12);
+  }
+}
+
+/* Sensor tooltip */
+.sensor-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(8px);
+  color: #f8fafc;
+  border-radius: 8px;
+  padding: 10px 14px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 30;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  font-size: 12px;
+}
+
+.sensor-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: rgba(15, 23, 42, 0.95);
+}
+
+/* Layer tabs */
+.layer-tab {
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-bottom: 3px solid transparent;
+  color: var(--text-secondary);
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
+  cursor: pointer;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.layer-tab:hover {
+  color: var(--foreground);
+}
+
+.layer-tab[data-active='true'] {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}

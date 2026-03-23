@@ -59,6 +59,14 @@ export const UI_LABELS = {
   PILE_MONITORING: 'Pile Monitoring',
   PROBLEM_SENSORS: 'Problem Sensor',
   ACTIVE_PILES: 'Active Piles',
+  BACK_TO_MONITORING: 'Back to Monitoring',
+  GRAIN_TYPE_LABEL: 'Grain',
+  DIMENSIONS_LABEL: 'Footprint',
+  LAYER_AVG_TEMP: 'Layer Avg Temp',
+  LAYER_AVG_MOISTURE: 'Layer Avg Moisture',
+  LAYER_PROBLEMS: 'Flagged',
+  NO_PROBLEMS: 'All Clear',
+  SENSORS_LABEL: 'Sensors',
 } as const;
 
 // Grain types
