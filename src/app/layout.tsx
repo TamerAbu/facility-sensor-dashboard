@@ -31,7 +31,6 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${notoSansHebrew.variable} ${splineSansMono.variable} h-full antialiased`}
-      style={{ colorScheme: 'light' }}
     >
       <body className="min-h-full">
         <AppShell>{children}</AppShell>

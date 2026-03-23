@@ -1,10 +1,12 @@
 import { Activity } from 'lucide-react';
 
+import { STATUS_LABELS, UI_LABELS } from '@/lib/constants';
 import { SITE } from '@/lib/mock-data';
+import type { PileStatus } from '@/lib/types';
 import { processSiteData } from '@/lib/risk-engine';
 import { PileCard } from '@/features/sites/pile-card';
 
-const SEVERITY_ORDER: Record<string, number> = {
+const SEVERITY_ORDER: Record<PileStatus, number> = {
   critical: 0,
   warning: 1,
   ok: 2,
@@ -26,7 +28,9 @@ export const SitesScreen = () => {
     <div>
       <div className="mb-8 flex items-start justify-between">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight">Pile Monitoring</h2>
+          <h2 className="text-2xl font-bold tracking-tight">
+            {UI_LABELS.PILE_MONITORING}
+          </h2>
           <p className="mt-1 text-sm text-text-secondary">
             {SITE.name} · {SITE.address}
           </p>
@@ -37,18 +41,18 @@ export const SitesScreen = () => {
             {criticalCount > 0 && (
               <span className="flex items-center gap-1.5 text-status-critical">
                 <span className="h-2 w-2 animate-pulse rounded-full bg-status-critical" />
-                {criticalCount} Critical
+                {criticalCount} {STATUS_LABELS.critical}
               </span>
             )}
             {warningCount > 0 && (
               <span className="flex items-center gap-1.5 text-status-warning">
                 <span className="h-2 w-2 rounded-full bg-status-warning" />
-                {warningCount} Warning
+                {warningCount} {STATUS_LABELS.warning}
               </span>
             )}
             <span className="flex items-center gap-1.5 text-status-ok">
               <span className="h-2 w-2 rounded-full bg-status-ok" />
-              {okCount} OK
+              {okCount} {STATUS_LABELS.ok}
             </span>
           </div>
         </div>
