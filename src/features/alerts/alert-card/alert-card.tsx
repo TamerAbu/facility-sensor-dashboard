@@ -37,7 +37,10 @@ export const AlertCard = ({ alert }: AlertCardProps) => {
   const layerLabel = LAYER_LABEL[alert.layer] ?? alert.layer;
 
   return (
-    <div className="card-base alert-card p-7" data-severity={alert.severity}>
+    <div
+      className="card-base alert-card px-8 py-7"
+      data-severity={alert.severity}
+    >
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-2">
           <AlertTriangle className={`h-5 w-5 ${config.iconColor}`} />
