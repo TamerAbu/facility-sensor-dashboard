@@ -15,26 +15,26 @@ export const GatewayCard = ({ gateway }: GatewayCardProps) => (
         {EXTERNAL_LABELS.GATEWAY}
       </span>
     </div>
-    <div className="mt-3 space-y-2">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
+    <div className="mt-3 grid grid-cols-2 gap-3">
+      <div>
+        <p className="text-xs text-text-secondary">
+          {EXTERNAL_LABELS.AMBIENT_TEMP}
+        </p>
+        <div className="mt-0.5 flex items-center gap-1.5">
           <Thermometer className="h-3.5 w-3.5 text-text-secondary" />
-          <span className="text-xs text-text-secondary">
-            {EXTERNAL_LABELS.AMBIENT_TEMP}
-          </span>
+          <span className="text-sm font-semibold">{gateway.ambientTemp}°C</span>
         </div>
-        <span className="text-sm font-semibold">{gateway.ambientTemp}°C</span>
       </div>
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
+      <div>
+        <p className="text-xs text-text-secondary">
+          {EXTERNAL_LABELS.HUMIDITY}
+        </p>
+        <div className="mt-0.5 flex items-center gap-1.5">
           <Droplets className="h-3.5 w-3.5 text-text-secondary" />
-          <span className="text-xs text-text-secondary">
-            {EXTERNAL_LABELS.HUMIDITY}
+          <span className="text-sm font-semibold">
+            {gateway.ambientHumidity}%
           </span>
         </div>
-        <span className="text-sm font-semibold">
-          {gateway.ambientHumidity}%
-        </span>
       </div>
     </div>
   </div>

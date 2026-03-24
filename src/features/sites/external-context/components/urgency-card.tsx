@@ -42,33 +42,29 @@ export const UrgencyCard = ({ piles, price }: UrgencyCardProps) => {
 
   return (
     <div className="rounded-lg border border-border bg-surface p-4">
-      <div className="flex items-center gap-2">
-        <ShieldAlert className={`h-4 w-4 ${level.color}`} />
-        <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-text-secondary">
-          {EXTERNAL_LABELS.ECONOMIC_URGENCY}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <ShieldAlert className={`h-4 w-4 ${level.color}`} />
+          <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-text-secondary">
+            {EXTERNAL_LABELS.ECONOMIC_URGENCY}
+          </span>
+        </div>
+        <span className={`text-xs font-bold ${level.color}`}>
+          {level.label}
         </span>
       </div>
-      <div className="mt-3">
-        <div className="flex items-center justify-between">
-          <span className={`text-sm font-bold ${level.color}`}>
-            {level.label}
-          </span>
-          <span className="text-xs text-text-secondary">
-            {atRiskPiles.length}/{piles.length} {EXTERNAL_LABELS.PILES_AT_RISK}
-          </span>
+      <div className="mt-3 flex items-end justify-between">
+        <div>
+          <p className="text-xs text-text-secondary">
+            {EXTERNAL_LABELS.AT_RISK_VALUE}
+          </p>
+          <p className="font-mono text-xl font-bold tabular-nums">
+            ${atRiskValue.toLocaleString()}
+          </p>
         </div>
-        <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-surface-secondary">
-          <div
-            className={`h-full rounded-full transition-all duration-700 ${level.bg}`}
-            style={{ width: `${urgencyScore * 100}%` }}
-          />
-        </div>
-        <p className="mt-3 text-xs text-text-secondary">
-          {EXTERNAL_LABELS.AT_RISK_VALUE}
-        </p>
-        <p className="font-mono text-lg font-bold tabular-nums">
-          ${atRiskValue.toLocaleString()}
-        </p>
+        <span className="text-xs text-text-secondary">
+          {atRiskPiles.length}/{piles.length} {EXTERNAL_LABELS.PILES_AT_RISK}
+        </span>
       </div>
     </div>
   );
