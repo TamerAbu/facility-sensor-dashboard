@@ -107,6 +107,7 @@ export const EXTERNAL_LABELS = {
   ECONOMIC_URGENCY: 'Economic Urgency',
   AT_RISK_VALUE: 'At-Risk Value',
   PRICE_TREND: 'Price Trend',
+  PILES_AT_RISK: 'piles at risk',
 } as const;
 
 // Grain types

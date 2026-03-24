@@ -1,6 +1,7 @@
 import { ShieldAlert } from 'lucide-react';
 
 import { EXTERNAL_LABELS } from '@/lib/constants';
+
 import type { CommodityPrice, Pile } from '@/lib/types';
 
 interface UrgencyCardProps {
@@ -53,7 +54,7 @@ export const UrgencyCard = ({ piles, price }: UrgencyCardProps) => {
             {level.label}
           </span>
           <span className="text-xs text-text-secondary">
-            {atRiskPiles.length}/{piles.length} piles at risk
+            {atRiskPiles.length}/{piles.length} {EXTERNAL_LABELS.PILES_AT_RISK}
           </span>
         </div>
         <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-surface-secondary">
