@@ -1,9 +1,15 @@
 import { Activity } from 'lucide-react';
 
 import { STATUS_LABELS, UI_LABELS } from '@/lib/constants';
-import { SITE } from '@/lib/mock-data';
+import {
+  COMMODITY_PRICE,
+  GATEWAY_READING,
+  SITE,
+  WEATHER_DATA,
+} from '@/lib/mock-data';
 import type { PileStatus } from '@/lib/types';
 import { processSiteData } from '@/lib/risk-engine';
+import { ExternalContextBar } from '@/features/sites/external-context';
 import { PileCard } from '@/features/sites/pile-card';
 
 const SEVERITY_ORDER: Record<PileStatus, number> = {
@@ -57,6 +63,13 @@ export const SitesScreen = () => {
           </div>
         </div>
       </div>
+
+      <ExternalContextBar
+        weather={WEATHER_DATA}
+        gateway={GATEWAY_READING}
+        price={COMMODITY_PRICE}
+        piles={sortedPiles}
+      />
 
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
         {sortedPiles.map((pile) => (

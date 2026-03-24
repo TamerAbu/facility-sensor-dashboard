@@ -76,6 +76,37 @@ export const UI_LABELS = {
   SENSOR_INTEGRITY: 'Sensor Integrity',
   ACTIVE_UNITS: 'Active Units',
   FAULT_REPORTED: 'Fault Reported',
+  ALERTS_PAGE_TITLE: 'Active Alerts',
+  ALERTS_PAGE_SUBTITLE: 'Alerts requiring immediate attention',
+  ALERT_SUMMARY: 'active alerts',
+  ALERT_FILTER_ALL: 'All',
+  ALERT_FILTER_CRITICAL: 'Critical',
+  ALERT_FILTER_WARNING: 'Warning',
+  ALERT_AFFECTED_SENSORS: 'Affected Sensors',
+  ALERT_RECOMMENDED_ACTION: 'Recommended Action',
+  ALERT_LAYER_LABEL: 'Layer',
+  NO_ALERTS: 'No active alerts. All systems nominal.',
+  NO_MATCHING_ALERTS: 'No alerts match the selected filter.',
+  CRITICAL_ALERT: 'Critical Alert',
+  WARNING_ALERT: 'Warning',
+  SORTED_BY_SEVERITY: 'Sorted by Severity',
+  EXECUTE: 'Execute',
+  DISMISS: 'Dismiss',
+} as const;
+
+// External data labels
+export const EXTERNAL_LABELS = {
+  WEATHER: 'Weather',
+  GATEWAY: 'Cell Ambient',
+  COMMODITY: 'CBOT Wheat',
+  EXTERNAL_TEMP: 'External',
+  AMBIENT_TEMP: 'Ambient',
+  HUMIDITY: 'Humidity',
+  WIND: 'Wind',
+  CONDITIONS: 'Conditions',
+  ECONOMIC_URGENCY: 'Economic Urgency',
+  AT_RISK_VALUE: 'At-Risk Value',
+  PRICE_TREND: 'Price Trend',
 } as const;
 
 // Grain types
