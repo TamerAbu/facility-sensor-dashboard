@@ -7,7 +7,7 @@ interface SensorLayerViewProps {
 }
 
 export const SensorLayerView = ({ sensors }: SensorLayerViewProps) => (
-  <div className="sensor-layer-grid relative aspect-[2/1] w-full">
+  <div className="sensor-layer-grid relative aspect-[3/1] w-full max-h-80">
     {sensors.map((sensor) => (
       <SensorDot key={sensor.sensorId} sensor={sensor} />
     ))}
