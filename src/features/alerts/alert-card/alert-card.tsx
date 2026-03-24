@@ -1,48 +1,79 @@
-import Link from 'next/link';
+import { AlertTriangle } from 'lucide-react';
 
 import { UI_LABELS } from '@/lib/constants';
-import type { Alert } from '@/lib/types';
-import { StatusBadge } from '@/shared/components/status-badge';
+import type { Alert, AlertSeverity } from '@/lib/types';
 
 import { AlertActionBox } from './components/alert-action-box';
+import { AlertCardActions } from './components/alert-card-actions';
 
 interface AlertCardProps {
   alert: Alert;
 }
 
-export const AlertCard = ({ alert }: AlertCardProps) => (
-  <Link href={`/sites/${alert.pileId}`} className="block">
-    <div className="card-base alert-card p-6" data-severity={alert.severity}>
-      <div className="flex items-center justify-between">
-        <h3 className="text-lg font-bold">{alert.pileName}</h3>
-        <StatusBadge status={alert.severity} />
+const LAYER_LABEL: Record<string, string> = {
+  bottom: 'Bottom Layer',
+  middle: 'Middle Layer',
+  top: 'Top Layer',
+};
+
+const SEVERITY_CONFIG: Record<
+  AlertSeverity,
+  { label: string; color: string; iconColor: string }
+> = {
+  critical: {
+    label: UI_LABELS.CRITICAL_ALERT,
+    color: 'text-status-critical',
+    iconColor: 'text-status-critical',
+  },
+  warning: {
+    label: UI_LABELS.WARNING_ALERT,
+    color: 'text-status-warning',
+    iconColor: 'text-status-warning',
+  },
+};
+
+export const AlertCard = ({ alert }: AlertCardProps) => {
+  const config = SEVERITY_CONFIG[alert.severity];
+  const layerLabel = LAYER_LABEL[alert.layer] ?? alert.layer;
+
+  return (
+    <div className="card-base alert-card p-7" data-severity={alert.severity}>
+      <div className="flex items-start justify-between">
+        <div className="flex items-center gap-2">
+          <AlertTriangle className={`h-5 w-5 ${config.iconColor}`} />
+          <span
+            className={`text-xs font-bold uppercase tracking-[0.15em] ${config.color}`}
+          >
+            {config.label}
+          </span>
+        </div>
       </div>
 
-      <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-text-secondary">
-        {UI_LABELS.ALERT_LAYER_LABEL}: {alert.layer}
-      </p>
+      <h3 className="mt-2 text-xl font-bold tracking-tight">
+        {alert.pileName} - {layerLabel}
+      </h3>
 
-      <p className="mt-3 text-sm leading-relaxed text-text-secondary">
-        {alert.description}
-      </p>
-
-      <div className="mt-3">
-        <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-text-secondary">
-          {UI_LABELS.ALERT_AFFECTED_SENSORS}
-        </p>
-        <div className="mt-1.5 flex flex-wrap gap-1.5">
+      <div className="mt-4">
+        <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-text-secondary">
+          {UI_LABELS.ALERT_AFFECTED_SENSORS}:
+        </span>
+        <span className="ml-2 inline-flex gap-1.5">
           {alert.affectedSensors.map((sensorId) => (
             <span
               key={sensorId}
-              className="rounded-md bg-surface-secondary px-2 py-0.5 text-xs font-mono font-medium"
+              className="rounded-md border border-border bg-surface-secondary px-2.5 py-0.5 font-mono text-xs font-medium"
             >
               {sensorId}
             </span>
           ))}
-        </div>
+        </span>
       </div>
 
-      <AlertActionBox action={alert.recommendedAction} />
+      <AlertActionBox
+        action={alert.recommendedAction}
+        severity={alert.severity}
+      />
+      <AlertCardActions />
     </div>
-  </Link>
-);
+  );
+};

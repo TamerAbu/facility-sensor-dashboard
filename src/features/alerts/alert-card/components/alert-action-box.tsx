@@ -1,21 +1,28 @@
-import { Wrench } from 'lucide-react';
-
 import { UI_LABELS } from '@/lib/constants';
+import type { AlertSeverity } from '@/lib/types';
 
 interface AlertActionBoxProps {
   action: string;
+  severity: AlertSeverity;
 }
 
-export const AlertActionBox = ({ action }: AlertActionBoxProps) => (
-  <div className="mt-4 rounded-lg border border-accent/20 bg-accent/5 px-4 py-3">
-    <div className="flex items-start gap-2.5">
-      <Wrench className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-      <div>
-        <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-accent">
-          {UI_LABELS.ALERT_RECOMMENDED_ACTION}
-        </p>
-        <p className="mt-1 text-sm leading-relaxed">{action}</p>
-      </div>
-    </div>
+const SEVERITY_BORDER: Record<AlertSeverity, string> = {
+  critical: 'border-l-status-critical',
+  warning: 'border-l-status-warning',
+};
+
+const SEVERITY_BG: Record<AlertSeverity, string> = {
+  critical: 'bg-status-critical/5',
+  warning: 'bg-status-warning/5',
+};
+
+export const AlertActionBox = ({ action, severity }: AlertActionBoxProps) => (
+  <div
+    className={`mt-5 rounded-r-lg border-l-4 py-3 pr-4 pl-4 ${SEVERITY_BORDER[severity]} ${SEVERITY_BG[severity]}`}
+  >
+    <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-status-critical">
+      {UI_LABELS.ALERT_RECOMMENDED_ACTION}
+    </p>
+    <p className="mt-1 text-sm leading-relaxed">{action}</p>
   </div>
 );

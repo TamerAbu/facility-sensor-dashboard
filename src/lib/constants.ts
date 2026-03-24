@@ -87,6 +87,11 @@ export const UI_LABELS = {
   ALERT_LAYER_LABEL: 'Layer',
   NO_ALERTS: 'No active alerts. All systems nominal.',
   NO_MATCHING_ALERTS: 'No alerts match the selected filter.',
+  CRITICAL_ALERT: 'Critical Alert',
+  WARNING_ALERT: 'Warning',
+  SORTED_BY_SEVERITY: 'Sorted by Severity',
+  EXECUTE: 'Execute',
+  DISMISS: 'Dismiss',
 } as const;
 
 // Grain types
