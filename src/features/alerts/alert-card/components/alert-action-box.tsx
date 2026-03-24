@@ -11,12 +11,12 @@ const SEVERITY_STYLES: Record<
   { border: string; bg: string; label: string }
 > = {
   critical: {
-    border: 'border-l-status-critical',
+    border: 'border-status-critical/20 border-l-status-critical',
     bg: 'bg-status-critical/5',
     label: 'text-status-critical',
   },
   warning: {
-    border: 'border-l-status-warning',
+    border: 'border-status-warning/20 border-l-status-warning',
     bg: 'bg-status-warning/5',
     label: 'text-status-warning',
   },
@@ -27,7 +27,7 @@ export const AlertActionBox = ({ action, severity }: AlertActionBoxProps) => {
 
   return (
     <div
-      className={`-mx-8 mt-6 border-l-4 px-8 py-4 ${styles.border} ${styles.bg}`}
+      className={`mt-5 rounded-md border border-l-4 px-5 py-4 ${styles.border} ${styles.bg}`}
     >
       <p
         className={`text-[10px] font-bold uppercase tracking-[0.15em] ${styles.label}`}

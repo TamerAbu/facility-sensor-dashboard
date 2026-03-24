@@ -48,7 +48,7 @@ export const AlertListWithFilter = ({ alerts }: AlertListWithFilterProps) => {
               key={option.value}
               type="button"
               onClick={() => setActiveFilter(option.value)}
-              className={`rounded-full px-5 py-2 text-sm font-semibold transition-colors ${
+              className={`rounded-lg px-5 py-2 text-sm font-semibold transition-colors ${
                 activeFilter === option.value
                   ? 'bg-foreground text-white'
                   : 'bg-surface-secondary text-text-secondary hover:bg-border'

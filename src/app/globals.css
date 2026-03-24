@@ -120,10 +120,12 @@ body {
   background: var(--status-critical);
 }
 
-/* Alert card — thicker stripe */
+/* Alert card — bold stripe, sharper corners */
+.alert-card {
+  border-radius: 8px;
+}
 .alert-card::before {
   width: 5px;
-  border-radius: 0 3px 3px 0;
 }
 .alert-card[data-severity='warning']::before {
   background: var(--status-warning);
