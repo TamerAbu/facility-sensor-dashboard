@@ -41,7 +41,7 @@ export const LayerStatsCards = ({ sensors }: LayerStatsCardsProps) => {
       : null;
 
   return (
-    <div className="mt-6 grid grid-cols-3 gap-4">
+    <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {maxTemp && minTemp && (
         <TempVarianceCard maxSensor={maxTemp} minSensor={minTemp} />
       )}

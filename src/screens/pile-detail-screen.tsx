@@ -34,10 +34,12 @@ export const PileDetailScreen = ({ pileId }: PileDetailScreenProps) => {
         {UI_LABELS.BACK_TO_MONITORING}
       </Link>
 
-      <div className="flex items-start justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <div className="flex items-center gap-4">
-            <h2 className="text-3xl font-bold tracking-tight">{pile.name}</h2>
+            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+              {pile.name}
+            </h2>
             <StatusBadge status={pile.status} />
           </div>
           <p className="mt-1 text-[12px] text-text-secondary">

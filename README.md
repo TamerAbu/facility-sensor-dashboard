@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# agriQ Facility Sensor Dashboard
 
-## Getting Started
+Operator dashboard for monitoring grain storage conditions at the Harish 7 facility. Built for non-technical warehouse operators who need to act on sensor alerts quickly.
 
-First, run the development server:
+## Setup
 
 ```bash
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Production build (validates TypeScript) |
+| `npm run lint` | Run ESLint |
+| `npm run lint:fix` | Auto-fix lint issues |
+| `npm run format` | Format with Prettier |
+| `npm run format:check` | Check formatting |
 
-## Learn More
+## Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Next.js 16** (App Router) with React 19
+- **TypeScript** in strict mode
+- **Tailwind CSS v4** for styling
+- **Lucide React** for icons
+- Hardcoded mock data (no backend)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Pages
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Sites (`/sites`)
+Overview of all 4 grain piles with status cards. Each card shows average temperature, moisture, and problem sensor count. Piles sorted by severity (critical first). Includes an external context bar showing weather, gateway ambient readings, CBOT wheat price, and an economic urgency index.
 
-## Deploy on Vercel
+### Pile Detail (`/sites/[pileId]`)
+Top-down sensor visualization with layer tabs (Bottom/Middle/Top). 10 sensors per layer positioned on a grid. Hover for tooltip with readings. Stats cards show temperature variance, moisture range, and sensor integrity.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Alerts (`/alerts`)
+Active alerts sorted by severity with filter toggles (All/Critical/Warning). Each alert card shows affected pile and layer, sensor IDs, and a recommended action. Cards link to pile detail for drill-down.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Architecture
+
+```
+src/
+  app/           Thin page files (~5 lines each)
+  screens/       Screen-level layout components
+  features/      Feature components grouped by page
+  shared/        Reusable components (2+ screens)
+  lib/           Types, constants, mock data, risk engine
+```
+
+## Data Sources
+
+The dashboard consolidates four data sources (all hardcoded mock data):
+
+1. **Sensor ball readings** - Temperature and moisture per sensor inside each grain pile
+2. **Gateway readings** - Ambient temperature and humidity inside the storage cell
+3. **Weather API** - External conditions for the Emek Hefer area
+4. **CBOT commodity prices** - Wheat futures for economic urgency calculation
+
+## Risk Logic
+
+- Temperature: <30°C OK, 30-45°C Warning, >45°C Critical
+- Moisture: <14% OK, 14-17% Warning, >17% Critical
+- Both temp AND moisture in Warning range escalates to Critical (multiplier rule)
+- Faulty sensor detection: deviation >15°C from layer average
+- Economic Urgency Index: combines deterioration rate with CBOT market price

@@ -28,12 +28,12 @@ export const NavLink = ({
       title={collapsed ? label : undefined}
       className={`group relative flex items-center gap-3 overflow-hidden rounded-lg px-3 py-2.5 text-[13px] font-medium whitespace-nowrap transition-all duration-300 ${
         isActive
-          ? 'glass-nav-active text-white'
-          : 'text-slate-400 hover:bg-white/[0.05] hover:text-slate-200'
+          ? 'sidebar-nav-active font-semibold text-foreground'
+          : 'text-text-secondary hover:bg-surface-secondary hover:text-foreground'
       }`}
     >
       <span
-        className={`shrink-0 transition-colors ${isActive ? 'text-accent' : 'text-slate-500 group-hover:text-slate-400'}`}
+        className={`shrink-0 transition-colors ${isActive ? 'text-accent' : 'text-text-secondary group-hover:text-foreground'}`}
       >
         {icon}
       </span>
@@ -43,7 +43,7 @@ export const NavLink = ({
           className={`flex items-center justify-center rounded-full bg-status-critical font-bold tabular-nums text-white transition-all duration-300 ${
             collapsed
               ? 'absolute -right-0.5 -top-0.5 h-3.5 min-w-3.5 px-0.5 text-[8px]'
-              : 'ml-auto h-5 min-w-5 px-1.5 text-[10px] shadow-sm shadow-red-500/30'
+              : 'ml-auto h-5 min-w-5 px-1.5 text-[10px]'
           }`}
         >
           {badge}

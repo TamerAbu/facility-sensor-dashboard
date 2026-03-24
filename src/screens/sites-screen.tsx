@@ -32,7 +32,7 @@ export const SitesScreen = () => {
 
   return (
     <div>
-      <div className="mb-8 flex items-start justify-between">
+      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h2 className="text-2xl font-bold tracking-tight">
             {UI_LABELS.PILE_MONITORING}
