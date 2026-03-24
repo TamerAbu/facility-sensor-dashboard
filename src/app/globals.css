@@ -86,8 +86,8 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-/* Pile card */
-.pile-card {
+/* Shared card base — left color stripe pattern */
+.card-base {
   position: relative;
   background: var(--surface);
   border-radius: 16px;
@@ -96,7 +96,7 @@ body {
   transition: box-shadow 0.2s ease;
 }
 
-.pile-card::before {
+.card-base::before {
   content: '';
   position: absolute;
   left: 0;
@@ -105,6 +105,11 @@ body {
   width: 4px;
 }
 
+.card-base:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Pile card stripe colors */
 .pile-card[data-status='ok']::before {
   background: var(--status-ok);
 }
@@ -115,8 +120,12 @@ body {
   background: var(--status-critical);
 }
 
-.pile-card:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+/* Alert card stripe colors */
+.alert-card[data-severity='warning']::before {
+  background: var(--status-warning);
+}
+.alert-card[data-severity='critical']::before {
+  background: var(--status-critical);
 }
 
 /* Sensor layer blueprint grid */

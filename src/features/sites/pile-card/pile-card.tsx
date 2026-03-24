@@ -23,7 +23,7 @@ export const PileCard = ({ pile }: PileCardProps) => {
   return (
     <Link
       href={`/sites/${pile.id}`}
-      className="pile-card block cursor-pointer"
+      className="card-base pile-card block cursor-pointer"
       data-status={pile.status}
     >
       <div className="px-6 pt-6 pb-0">

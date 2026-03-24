@@ -76,6 +76,17 @@ export const UI_LABELS = {
   SENSOR_INTEGRITY: 'Sensor Integrity',
   ACTIVE_UNITS: 'Active Units',
   FAULT_REPORTED: 'Fault Reported',
+  ALERTS_PAGE_TITLE: 'Active Alerts',
+  ALERTS_PAGE_SUBTITLE: 'Alerts requiring immediate attention',
+  ALERT_SUMMARY: 'active alerts',
+  ALERT_FILTER_ALL: 'All',
+  ALERT_FILTER_CRITICAL: 'Critical',
+  ALERT_FILTER_WARNING: 'Warning',
+  ALERT_AFFECTED_SENSORS: 'Affected Sensors',
+  ALERT_RECOMMENDED_ACTION: 'Recommended Action',
+  ALERT_LAYER_LABEL: 'Layer',
+  NO_ALERTS: 'No active alerts. All systems nominal.',
+  NO_MATCHING_ALERTS: 'No alerts match the selected filter.',
 } as const;
 
 // Grain types
