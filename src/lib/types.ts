@@ -39,6 +39,27 @@ export interface Site {
   piles: Pile[];
 }
 
+export interface GatewayReading {
+  ambientTemp: number;
+  ambientHumidity: number;
+  timestamp: string;
+}
+
+export interface WeatherData {
+  externalTemp: number;
+  humidity: number;
+  wind: number;
+  conditions: string;
+}
+
+export interface CommodityPrice {
+  commodity: string;
+  price: number;
+  unit: string;
+  change: number;
+  changePercent: number;
+}
+
 export interface Alert {
   id: string;
   pileId: string;

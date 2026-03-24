@@ -1,4 +1,12 @@
-import type { Layer, Pile, SensorReading, Site } from './types';
+import type {
+  CommodityPrice,
+  GatewayReading,
+  Layer,
+  Pile,
+  SensorReading,
+  Site,
+  WeatherData,
+} from './types';
 
 const GRID_COLS = 5;
 const GRID_ROWS = 2;
@@ -111,4 +119,25 @@ export const SITE: Site = {
   name: 'Harish 7',
   address: 'Emek Hefer Industrial Park, Israel',
   piles: PILES,
+};
+
+export const GATEWAY_READING: GatewayReading = {
+  ambientTemp: 29.4,
+  ambientHumidity: 58,
+  timestamp: '2026-03-24T08:30:00Z',
+};
+
+export const WEATHER_DATA: WeatherData = {
+  externalTemp: 32.1,
+  humidity: 65,
+  wind: 12,
+  conditions: 'Clear',
+};
+
+export const COMMODITY_PRICE: CommodityPrice = {
+  commodity: 'CBOT Wheat',
+  price: 542,
+  unit: '¢/bushel',
+  change: 8,
+  changePercent: 1.5,
 };

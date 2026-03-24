@@ -94,6 +94,21 @@ export const UI_LABELS = {
   DISMISS: 'Dismiss',
 } as const;
 
+// External data labels
+export const EXTERNAL_LABELS = {
+  WEATHER: 'Weather',
+  GATEWAY: 'Cell Ambient',
+  COMMODITY: 'CBOT Wheat',
+  EXTERNAL_TEMP: 'External',
+  AMBIENT_TEMP: 'Ambient',
+  HUMIDITY: 'Humidity',
+  WIND: 'Wind',
+  CONDITIONS: 'Conditions',
+  ECONOMIC_URGENCY: 'Economic Urgency',
+  AT_RISK_VALUE: 'At-Risk Value',
+  PRICE_TREND: 'Price Trend',
+} as const;
+
 // Grain types
 export const GRAIN_TYPES = {
   WHEAT: 'Wheat',
