@@ -1,4 +1,4 @@
-import { Activity } from 'lucide-react';
+import { Activity, MapPin } from 'lucide-react';
 
 import { STATUS_LABELS, UI_LABELS } from '@/lib/constants';
 import {
@@ -34,10 +34,11 @@ export const SitesScreen = () => {
     <div>
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight">
+          <h2 className="text-3xl font-bold tracking-tight">
             {UI_LABELS.PILE_MONITORING}
           </h2>
-          <p className="mt-1 text-sm text-text-secondary">
+          <p className="mt-1.5 flex items-center gap-1.5 text-sm text-text-secondary">
+            <MapPin className="h-3.5 w-3.5" />
             {SITE.name} · {SITE.address}
           </p>
         </div>

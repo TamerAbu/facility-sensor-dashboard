@@ -57,6 +57,35 @@ body {
   background: #94a3b8;
 }
 
+/* External context bar */
+.context-strip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.context-strip > div {
+  border-right: 1px solid var(--border);
+}
+
+.context-strip > div:last-child {
+  border-right: none;
+}
+
+.context-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-secondary);
+}
+
+.context-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
 /* Clean sidebar */
 .sidebar {
   background: var(--surface);
