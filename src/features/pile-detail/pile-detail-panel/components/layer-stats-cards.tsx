@@ -9,31 +9,35 @@ interface LayerStatsCardsProps {
 }
 
 export const LayerStatsCards = ({ sensors }: LayerStatsCardsProps) => {
-  const nonFaulty = sensors.filter((s) => !s.isFaulty);
+  const nonFaulty = sensors.filter((sensor) => !sensor.isFaulty);
   const faultySensorIds = sensors
-    .filter((s) => s.isFaulty)
-    .map((s) => s.sensorId);
+    .filter((sensor) => sensor.isFaulty)
+    .map((sensor) => sensor.sensorId);
   const activeCount = sensors.length - faultySensorIds.length;
 
   const maxTemp =
     nonFaulty.length > 0
-      ? nonFaulty.reduce((max, s) =>
-          s.temperature > max.temperature ? s : max,
+      ? nonFaulty.reduce((max, sensor) =>
+          sensor.temperature > max.temperature ? sensor : max,
         )
       : null;
   const minTemp =
     nonFaulty.length > 0
-      ? nonFaulty.reduce((min, s) =>
-          s.temperature < min.temperature ? s : min,
+      ? nonFaulty.reduce((min, sensor) =>
+          sensor.temperature < min.temperature ? sensor : min,
         )
       : null;
   const maxMoist =
     nonFaulty.length > 0
-      ? nonFaulty.reduce((max, s) => (s.moisture > max.moisture ? s : max))
+      ? nonFaulty.reduce((max, sensor) =>
+          sensor.moisture > max.moisture ? sensor : max,
+        )
       : null;
   const minMoist =
     nonFaulty.length > 0
-      ? nonFaulty.reduce((min, s) => (s.moisture < min.moisture ? s : min))
+      ? nonFaulty.reduce((min, sensor) =>
+          sensor.moisture < min.moisture ? sensor : min,
+        )
       : null;
 
   return (

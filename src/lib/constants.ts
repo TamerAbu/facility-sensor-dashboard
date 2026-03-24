@@ -67,6 +67,15 @@ export const UI_LABELS = {
   LAYER_PROBLEMS: 'Flagged',
   NO_PROBLEMS: 'All Clear',
   SENSORS_LABEL: 'Sensors',
+  TEMP_VARIANCE: 'Temp Variance',
+  MAX_TEMP: 'Max Temp',
+  MIN_TEMP: 'Min Temp',
+  MOISTURE_RANGE: 'Moisture Range',
+  MAX_MOISTURE: 'Max Moisture',
+  MIN_MOISTURE: 'Min Moisture',
+  SENSOR_INTEGRITY: 'Sensor Integrity',
+  ACTIVE_UNITS: 'Active Units',
+  FAULT_REPORTED: 'Fault Reported',
 } as const;
 
 // Grain types
