@@ -14,11 +14,7 @@ export const IntegrityRing = ({ percentage }: IntegrityRingProps) => {
 
   return (
     <div className="relative flex items-center justify-center">
-      <svg
-        width={RING_SIZE}
-        height={RING_SIZE}
-        className="-rotate-90"
-      >
+      <svg width={RING_SIZE} height={RING_SIZE} className="-rotate-90">
         <circle
           cx={RING_SIZE / 2}
           cy={RING_SIZE / 2}
@@ -40,9 +36,7 @@ export const IntegrityRing = ({ percentage }: IntegrityRingProps) => {
           className="transition-all duration-700"
         />
       </svg>
-      <span className="absolute text-sm font-bold">
-        {percentage}%
-      </span>
+      <span className="absolute text-sm font-bold">{percentage}%</span>
     </div>
   );
 };

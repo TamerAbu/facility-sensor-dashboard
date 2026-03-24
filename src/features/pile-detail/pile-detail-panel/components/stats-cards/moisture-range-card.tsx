@@ -28,17 +28,13 @@ export const MoistureRangeCard = ({
       </div>
       <div className="mt-4 space-y-3 text-base">
         <div className="flex justify-between">
-          <span className="text-text-secondary">
-            {UI_LABELS.MAX_MOISTURE}
-          </span>
+          <span className="text-text-secondary">{UI_LABELS.MAX_MOISTURE}</span>
           <span className="font-mono font-semibold">
             {maxSensor.moisture.toFixed(1)}% ({maxSensor.sensorId})
           </span>
         </div>
         <div className="flex justify-between">
-          <span className="text-text-secondary">
-            {UI_LABELS.MIN_MOISTURE}
-          </span>
+          <span className="text-text-secondary">{UI_LABELS.MIN_MOISTURE}</span>
           <span className="font-mono font-semibold">
             {minSensor.moisture.toFixed(1)}% ({minSensor.sensorId})
           </span>
