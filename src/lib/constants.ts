@@ -59,6 +59,23 @@ export const UI_LABELS = {
   PILE_MONITORING: 'Pile Monitoring',
   PROBLEM_SENSORS: 'Problem Sensor',
   ACTIVE_PILES: 'Active Piles',
+  BACK_TO_MONITORING: 'Back to Monitoring',
+  GRAIN_TYPE_LABEL: 'Grain',
+  DIMENSIONS_LABEL: 'Footprint',
+  LAYER_AVG_TEMP: 'Layer Avg Temp',
+  LAYER_AVG_MOISTURE: 'Layer Avg Moisture',
+  LAYER_PROBLEMS: 'Flagged',
+  NO_PROBLEMS: 'All Clear',
+  SENSORS_LABEL: 'Sensors',
+  TEMP_VARIANCE: 'Temp Variance',
+  MAX_TEMP: 'Max Temp',
+  MIN_TEMP: 'Min Temp',
+  MOISTURE_RANGE: 'Moisture Range',
+  MAX_MOISTURE: 'Max Moisture',
+  MIN_MOISTURE: 'Min Moisture',
+  SENSOR_INTEGRITY: 'Sensor Integrity',
+  ACTIVE_UNITS: 'Active Units',
+  FAULT_REPORTED: 'Fault Reported',
 } as const;
 
 // Grain types
