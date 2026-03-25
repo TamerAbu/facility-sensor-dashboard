@@ -9,7 +9,11 @@ import {
   Wind,
 } from 'lucide-react';
 
-import { EXTERNAL_LABELS } from '@/lib/constants';
+import {
+  EXTERNAL_LABELS,
+  PILE_CAPACITY_TONNES,
+  TONNES_TO_BUSHELS_FACTOR,
+} from '@/lib/constants';
 import type {
   CommodityPrice,
   GatewayReading,
@@ -98,7 +102,8 @@ export const ExternalContextBar = ({
           <span
             className={`flex items-center gap-1 text-xs font-semibold ${isUp ? 'text-status-ok' : 'text-status-critical'}`}
           >
-            <TrendingUp className={`h-3 w-3 ${isUp ? '' : 'rotate-180'}`} />+
+            <TrendingUp className={`h-3 w-3 ${isUp ? '' : 'rotate-180'}`} />
+            {isUp ? '+' : ''}
             {price.change} ({price.changePercent}%)
           </span>
         </div>
@@ -124,7 +129,11 @@ export const ExternalContextBar = ({
           <p className="font-mono text-xl font-bold tabular-nums text-status-critical">
             $
             {Math.round(
-              (atRiskPiles.length * 3000 * 36.74 * price.price) / 100,
+              (atRiskPiles.length *
+                PILE_CAPACITY_TONNES *
+                TONNES_TO_BUSHELS_FACTOR *
+                price.price) /
+                100,
             ).toLocaleString()}
           </p>
         </div>

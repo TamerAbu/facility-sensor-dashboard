@@ -9,7 +9,11 @@ export const generateRateOfChangeAlerts = (piles: Pile[]): Alert[] => {
 
   for (const pile of piles) {
     for (const sensor of pile.sensors) {
-      const history = getHistoryForSensor(pile.id, sensor.sensorId);
+      const history = getHistoryForSensor(
+        pile.id,
+        sensor.sensorId,
+        pile.sensors,
+      );
       if (!history) continue;
 
       const reading = {

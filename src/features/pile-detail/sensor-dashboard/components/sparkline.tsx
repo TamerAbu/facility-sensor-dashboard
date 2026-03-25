@@ -27,6 +27,8 @@ export const Sparkline = ({
   showGrid = true,
   showDots = true,
 }: SparklineProps) => {
+  if (tempData.length === 0 && moistureData.length === 0) return null;
+
   const vh = size === 'lg' ? VH_LG : VH_SM;
   const area = chartArea(vh);
   const allValues = [...tempData, ...moistureData];

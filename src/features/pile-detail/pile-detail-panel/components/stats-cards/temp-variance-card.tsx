@@ -2,7 +2,7 @@
 
 import { Thermometer } from 'lucide-react';
 
-import { TEMP_WARNING_MAX, UI_LABELS } from '@/lib/constants';
+import { TEMP_DISPLAY_CEILING, UI_LABELS } from '@/lib/constants';
 import type { SensorReading } from '@/lib/types';
 
 import { RangeBar } from './range-bar';
@@ -16,7 +16,7 @@ export const TempVarianceCard = ({
   maxSensor,
   minSensor,
 }: TempVarianceCardProps) => {
-  const barRatio = maxSensor.temperature / TEMP_WARNING_MAX;
+  const barRatio = maxSensor.temperature / TEMP_DISPLAY_CEILING;
 
   return (
     <div className="rounded-xl border border-border bg-surface p-6 shadow-sm">

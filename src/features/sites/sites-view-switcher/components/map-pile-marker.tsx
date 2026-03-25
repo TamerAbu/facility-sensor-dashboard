@@ -15,15 +15,21 @@ const STATUS_COLORS: Record<PileStatus, string> = {
 };
 
 const STATUS_BG: Record<PileStatus, string> = {
-  ok: 'bg-emerald-50 text-emerald-700',
-  warning: 'bg-amber-50 text-amber-700',
-  critical: 'bg-red-50 text-red-700',
+  ok: 'bg-status-ok/10 text-status-ok',
+  warning: 'bg-status-warning/10 text-status-warning',
+  critical: 'bg-status-critical/10 text-status-critical',
 };
 
 const STATUS_TEXT: Record<PileStatus, string> = {
   ok: 'OK',
   warning: 'Warning',
   critical: 'Critical',
+};
+
+const STATUS_BTN: Record<PileStatus, string> = {
+  ok: 'bg-status-ok',
+  warning: 'bg-status-warning',
+  critical: 'bg-status-critical',
 };
 
 const createPulseIcon = (name: string, status: PileStatus) => {
@@ -102,8 +108,7 @@ export const MapPileMarker = ({ pile }: MapPileMarkerProps) => (
 
         <Link
           href={`/sites/${pile.id}`}
-          className="mt-3 flex items-center justify-center gap-1 rounded-lg px-3 py-2 text-xs font-bold tracking-wide text-white transition-opacity hover:opacity-90"
-          style={{ background: STATUS_COLORS[pile.status] }}
+          className={`mt-3 flex items-center justify-center gap-1 rounded-lg px-3 py-2 text-xs font-bold tracking-wide text-white transition-opacity hover:opacity-90 ${STATUS_BTN[pile.status]}`}
         >
           {UI_LABELS.INSPECT}
           <ChevronRight className="h-3.5 w-3.5" />

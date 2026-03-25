@@ -9,10 +9,12 @@ export const ToggleSwitch = ({
   checked,
   onChange,
 }: ToggleSwitchProps) => (
-  <label className="flex cursor-pointer items-center gap-2.5">
+  <label
+    className="flex cursor-pointer items-center gap-2.5"
+    onClick={() => onChange(!checked)}
+  >
     <div
       className={`relative h-5 w-9 rounded-full transition-colors ${checked ? 'bg-accent' : 'bg-border'}`}
-      onClick={() => onChange(!checked)}
       role="switch"
       aria-checked={checked}
     >

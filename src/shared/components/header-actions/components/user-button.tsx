@@ -48,7 +48,7 @@ export const UserButton = () => {
           <div className="mt-3 border-t border-border pt-3">
             <button
               type="button"
-              className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-semibold text-status-critical transition-colors hover:bg-red-50"
+              className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-semibold text-status-critical transition-colors hover:bg-status-critical/10"
             >
               <LogOut className="h-4 w-4" />
               Sign Out
