@@ -273,3 +273,171 @@ body {
   color: var(--accent);
   border-bottom-color: var(--accent);
 }
+
+/* Map marker pulse animation */
+@keyframes map-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.25;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+/* Map popup — override Leaflet defaults */
+.map-popup .leaflet-popup-content-wrapper {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  padding: 0;
+  border: 1px solid var(--border);
+}
+
+.map-popup .leaflet-popup-content {
+  margin: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.map-popup .leaflet-popup-tip {
+  background: white;
+  border: 1px solid var(--border);
+  border-top: none;
+  border-left: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* Chart container — light background matching card style */
+.chart-container {
+  background: var(--surface-secondary);
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.chart-label {
+  font-size: 7px;
+  fill: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+
+.chart-label-bright {
+  font-size: 8px;
+  fill: var(--foreground);
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+
+/* Customize panel animation */
+.customize-panel {
+  animation: panel-slide 0.25s ease-out;
+  overflow: hidden;
+}
+
+@keyframes panel-slide {
+  from {
+    max-height: 0;
+    opacity: 0;
+  }
+  to {
+    max-height: 300px;
+    opacity: 1;
+  }
+}
+
+/* Sensor dashboard cards */
+.sensor-card {
+  border-radius: 10px;
+}
+
+.sensor-card::before {
+  width: 4px;
+}
+
+.sensor-card[data-status='ok']::before {
+  background: var(--status-ok);
+}
+
+.sensor-card[data-status='warning']::before {
+  background: var(--status-warning);
+}
+
+.sensor-card[data-status='critical']::before {
+  background: var(--status-critical);
+}
+
+.sensor-card[data-status='faulty']::before {
+  background: var(--status-faulty);
+}
+
+.sensor-card-highlight {
+  animation: card-ring 2s ease-out;
+}
+
+@keyframes card-ring {
+  0% {
+    box-shadow: 0 0 0 3px var(--accent);
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+/* Alert handled state */
+.alert-card[data-status='handled'] {
+  opacity: 0.5;
+  border-color: var(--status-faulty);
+}
+
+.alert-card[data-status='handled']::before {
+  background: var(--status-faulty) !important;
+}
+
+/* Fade-out animation for dismissed alerts */
+.alert-card-fade-out {
+  animation: fade-out 0.4s ease-out forwards;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
+/* Toast slide-up animation */
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Confirm dialog overlay */
+.confirm-overlay {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  animation: overlay-in 0.2s ease-out;
+}
+
+@keyframes overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

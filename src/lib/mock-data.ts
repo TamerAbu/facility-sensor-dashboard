@@ -1,12 +1,22 @@
+import { PILE_COORDINATES } from './constants';
 import type {
   CommodityPrice,
   GatewayReading,
   Layer,
   Pile,
   SensorReading,
+  SensorType,
   Site,
   WeatherData,
 } from './types';
+
+const SENSOR_TYPES: SensorType[] = [
+  'thermocouple',
+  'capacitive',
+  'resistive',
+  'infrared',
+  'fiber-optic',
+];
 
 const GRID_COLS = 5;
 const GRID_ROWS = 2;
@@ -91,6 +101,7 @@ const buildSensors = (
       isFaulty,
       batteryPercent,
       lastTransmissionAt,
+      sensorType: SENSOR_TYPES[i % SENSOR_TYPES.length],
     };
   });
 };
@@ -114,6 +125,7 @@ const buildPile = (
     status: 'ok',
     avgTemperature: 0,
     avgMoisture: 0,
+    coordinates: PILE_COORDINATES[id] ?? { lat: 0, lng: 0 },
   };
 };
 

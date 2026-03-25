@@ -8,6 +8,47 @@ export type AlertSeverity = 'warning' | 'critical';
 
 export type AlertType = 'threshold' | 'rate-of-change' | 'sensor-health';
 
+export type AlertSortOption = 'severity' | 'pile' | 'type';
+
+export type SensorViewMode = 'grid' | 'table' | 'detail';
+
+export type SitesViewMode = 'grid' | 'map';
+
+export interface GeoCoordinate {
+  lat: number;
+  lng: number;
+}
+
+export type GraphType = 'sparkline' | 'bar' | 'area' | 'pie';
+
+export type MetricFilter = 'both' | 'temperature' | 'moisture';
+
+export type TimeRange = '3d' | '7d' | '14d';
+
+export type SensorType =
+  | 'thermocouple'
+  | 'capacitive'
+  | 'resistive'
+  | 'infrared'
+  | 'fiber-optic';
+
+export interface CardVisibility {
+  temperature: boolean;
+  moisture: boolean;
+  battery: boolean;
+  lastSeen: boolean;
+  sensorType: boolean;
+}
+
+export type AlertActionType =
+  | 'execute'
+  | 'acknowledge'
+  | 'schedule-maintenance'
+  | 'schedule-replacement'
+  | 'investigate';
+
+export type AlertStatus = 'active' | 'handled' | 'dismissed';
+
 export interface Position {
   x: number;
   y: number;
@@ -23,6 +64,7 @@ export interface SensorReading {
   isFaulty: boolean;
   batteryPercent: number;
   lastTransmissionAt: string;
+  sensorType: SensorType;
 }
 
 export interface Pile {
@@ -34,6 +76,7 @@ export interface Pile {
   status: PileStatus;
   avgTemperature: number;
   avgMoisture: number;
+  coordinates: GeoCoordinate;
 }
 
 export interface Site {

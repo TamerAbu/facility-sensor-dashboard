@@ -1,4 +1,4 @@
-import type { Layer } from './types';
+import type { GeoCoordinate, Layer } from './types';
 
 // Temperature thresholds (°C)
 export const TEMP_OK_MAX = 30;
@@ -20,7 +20,7 @@ export const RATE_SUDDEN_SPIKE = 8;
 export const BATTERY_WARNING_PERCENT = 20;
 export const BATTERY_CRITICAL_PERCENT = 10;
 export const MISSED_TRANSMISSION_THRESHOLD = 2;
-export const CYCLE_INTERVAL_HOURS = 6;
+export const CYCLE_INTERVAL_HOURS = 12;
 
 // Mock current timestamp
 export const CURRENT_TIMESTAMP = '2026-03-25T08:30:00Z';
@@ -63,6 +63,51 @@ export const RECOMMENDED_ACTIONS = {
     'Sensor battery critically low. Replace immediately to avoid data gaps.',
   MISSED_TRANSMISSION:
     'Sensor has missed 2+ transmissions. Check antenna, wiring, or replace unit.',
+} as const;
+
+// Alert sort options
+export const ALERT_SORT_OPTIONS = [
+  { value: 'severity', label: 'Severity' },
+  { value: 'pile', label: 'Pile Name' },
+  { value: 'type', label: 'Alert Type' },
+] as const;
+
+export const SEVERITY_SORT_ORDER: Record<string, number> = {
+  critical: 0,
+  warning: 1,
+};
+
+export const ALERT_TYPE_SORT_ORDER: Record<string, number> = {
+  threshold: 0,
+  'rate-of-change': 1,
+  'sensor-health': 2,
+};
+
+// Primary action labels per alert action type
+export const PRIMARY_ACTION_LABELS = {
+  execute: 'EXECUTE ACTION',
+  acknowledge: 'ACKNOWLEDGE',
+  'schedule-maintenance': 'SCHEDULE MAINTENANCE',
+  'schedule-replacement': 'SCHEDULE REPLACEMENT',
+  investigate: 'INVESTIGATE',
+} as const;
+
+// Sensor type labels
+export const SENSOR_TYPE_LABELS = {
+  thermocouple: 'Thermocouple',
+  capacitive: 'Capacitive',
+  resistive: 'Resistive',
+  infrared: 'Infrared',
+  'fiber-optic': 'Fiber Optic',
+} as const;
+
+// Default card field visibility
+export const DEFAULT_CARD_VISIBILITY = {
+  temperature: true,
+  moisture: true,
+  battery: true,
+  lastSeen: true,
+  sensorType: true,
 } as const;
 
 // Status labels
@@ -113,9 +158,15 @@ export const UI_LABELS = {
   NO_MATCHING_ALERTS: 'No alerts match the selected filter.',
   CRITICAL_ALERT: 'Critical Alert',
   WARNING_ALERT: 'Warning',
-  SORTED_BY_SEVERITY: 'Sorted by Severity',
-  EXECUTE: 'Execute',
+  SORT_LABEL_PREFIX: 'Sorted by',
   DISMISS: 'Dismiss',
+  DISMISS_CONFIRM_TITLE: 'Dismiss Alert',
+  DISMISS_CONFIRM_MESSAGE:
+    'Are you sure? This alert will be removed from the active list.',
+  DISMISS_CONFIRM_CANCEL: 'Cancel',
+  UNDO: 'UNDO',
+  ALERT_DISMISSED: 'Alert dismissed.',
+  HANDLED_BY_OPERATOR: 'Handled by operator at',
   ACTIVE_FACILITY: 'Active Facility',
   SITES_OVERVIEW: 'Sites Overview',
   SITES_SUBTITLE: 'Real-time status monitoring for grain storage clusters.',
@@ -126,6 +177,8 @@ export const UI_LABELS = {
   ALERT_TYPE_RATE_OF_CHANGE: 'Rate of Change',
   ALERT_TYPE_SENSOR_HEALTH: 'Sensor Health',
   ALERT_FILTER_ALL_TYPES: 'All Types',
+  SITES_VIEW_GRID: 'Grid',
+  SITES_VIEW_MAP: 'Map',
 } as const;
 
 // External data labels
@@ -143,6 +196,17 @@ export const EXTERNAL_LABELS = {
   PRICE_TREND: 'Price Trend',
   PILES_AT_RISK: 'piles at risk',
 } as const;
+
+// Map view constants — piles in Emek Hefer Industrial Park
+export const PILE_COORDINATES: Record<string, GeoCoordinate> = {
+  'pile-north': { lat: 32.3922, lng: 34.8798 },
+  'pile-south': { lat: 32.3908, lng: 34.8800 },
+  'pile-east': { lat: 32.3914, lng: 34.8818 },
+  'pile-west': { lat: 32.3916, lng: 34.8782 },
+};
+
+export const MAP_CENTER: GeoCoordinate = { lat: 32.3915, lng: 34.8800 };
+export const MAP_DEFAULT_ZOOM = 17;
 
 // Grain types
 export const GRAIN_TYPES = {
