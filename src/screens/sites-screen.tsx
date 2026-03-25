@@ -1,4 +1,4 @@
-import { Bell, MapPin, Settings } from 'lucide-react';
+import { Bell, MapPin, Settings, User } from 'lucide-react';
 
 import { UI_LABELS } from '@/lib/constants';
 import {
@@ -38,19 +38,12 @@ export const SitesScreen = () => {
             {SITE.name}, Emek Hefer
           </p>
         </div>
-        <div className="flex items-center gap-3">
-          <button
-            type="button"
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-surface-secondary"
-          >
-            <Bell className="h-[18px] w-[18px]" />
-          </button>
-          <button
-            type="button"
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-surface-secondary"
-          >
-            <Settings className="h-[18px] w-[18px]" />
-          </button>
+        <div className="flex items-center gap-4">
+          <Bell className="h-5 w-5 text-foreground/70" />
+          <Settings className="h-5 w-5 text-foreground/70" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-foreground">
+            <User className="h-5 w-5 text-white" />
+          </div>
         </div>
       </div>
 
