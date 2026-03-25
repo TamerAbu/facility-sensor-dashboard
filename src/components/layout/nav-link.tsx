@@ -21,15 +21,14 @@ export const NavLink = ({
 }: NavLinkProps) => {
   const pathname = usePathname();
   const isActive = pathname.startsWith(href);
+  const hasBadge = badge !== undefined && badge > 0;
 
   return (
     <Link
       href={href}
       title={collapsed ? label : undefined}
-      className={`group relative flex items-center rounded-xl text-[13px] font-bold uppercase tracking-wider whitespace-nowrap transition-all duration-200 ${
-        collapsed
-          ? 'mx-auto h-11 w-11 justify-center overflow-visible'
-          : 'gap-3 overflow-hidden px-3.5 py-3'
+      className={`group relative flex items-center rounded-xl px-3.5 py-3 text-[13px] font-bold uppercase tracking-wider whitespace-nowrap transition-all duration-300 ease-in-out ${
+        collapsed ? 'justify-center' : 'gap-3'
       } ${
         isActive
           ? `text-foreground ${collapsed ? 'bg-[var(--surface)]' : 'sidebar-nav-active'}`
@@ -41,14 +40,21 @@ export const NavLink = ({
       >
         {icon}
       </span>
-      {badge !== undefined && badge > 0 && collapsed && (
-        <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-status-critical px-0.5 text-[8px] font-bold tabular-nums text-white">
-          {badge}
-        </span>
-      )}
-      {!collapsed && <span className="overflow-hidden">{label}</span>}
-      {badge !== undefined && badge > 0 && !collapsed && (
-        <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-status-critical px-1.5 text-[10px] font-bold tabular-nums text-white">
+      <span
+        className={`overflow-hidden transition-all duration-300 ease-in-out ${
+          collapsed ? 'max-w-0 opacity-0' : 'max-w-40 opacity-100'
+        }`}
+      >
+        {label}
+      </span>
+      {hasBadge && (
+        <span
+          className={`flex items-center justify-center rounded-full bg-status-critical font-bold tabular-nums text-white transition-all duration-300 ease-in-out ${
+            collapsed
+              ? 'absolute -right-1 -top-1 h-4 min-w-4 px-0.5 text-[8px]'
+              : 'ml-auto h-5 min-w-5 px-1.5 text-[10px]'
+          }`}
+        >
           {badge}
         </span>
       )}
