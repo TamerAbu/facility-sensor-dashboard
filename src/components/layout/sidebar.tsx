@@ -17,7 +17,6 @@ import { NavLink } from './nav-link';
 
 interface SidebarProps {
   alertCount: number;
-
   children: React.ReactNode;
 }
 
@@ -31,19 +30,20 @@ export const Sidebar = ({ alertCount, children }: SidebarProps) => {
           collapsed ? 'w-16' : 'w-60'
         }`}
       >
-        <div className="px-4 py-6">
+        {/* Logo */}
+        <div className="px-5 pt-7 pb-2">
           <div className="flex items-center justify-center">
             {collapsed ? (
               <button
                 onClick={() => setCollapsed(false)}
-                className="flex h-10 w-10 items-center justify-center rounded-xl bg-foreground text-white"
+                className="flex h-11 w-11 items-center justify-center rounded-xl bg-foreground text-white"
                 title="Expand sidebar"
               >
                 <PanelLeftOpen className="h-4 w-4" />
               </button>
             ) : (
               <>
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-foreground">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-foreground">
                   <Radio className="h-5 w-5 text-white" />
                 </div>
                 <div className="ml-3 flex-1 overflow-hidden">
@@ -56,7 +56,7 @@ export const Sidebar = ({ alertCount, children }: SidebarProps) => {
                 </div>
                 <button
                   onClick={() => setCollapsed(true)}
-                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-surface-secondary"
+                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-border/50"
                   title="Collapse sidebar"
                 >
                   <PanelLeftClose className="h-3.5 w-3.5" />
@@ -66,7 +66,8 @@ export const Sidebar = ({ alertCount, children }: SidebarProps) => {
           </div>
         </div>
 
-        <nav className="flex flex-1 flex-col gap-1.5 px-3 pt-4">
+        {/* Navigation */}
+        <nav className="flex flex-1 flex-col gap-2 px-3 pt-8">
           <NavLink
             href="/sites"
             icon={<LayoutGrid className="h-[18px] w-[18px]" />}
@@ -82,32 +83,35 @@ export const Sidebar = ({ alertCount, children }: SidebarProps) => {
           />
         </nav>
 
-        <div className="border-t border-border px-4 py-4">
-          <div className="flex flex-col gap-3 overflow-hidden">
+        {/* Footer */}
+        <div className="px-4 pb-6">
+          <div className="flex flex-col gap-4 overflow-hidden">
             <button
               type="button"
-              className="w-full rounded-xl bg-foreground px-4 py-2.5 text-[11px] font-bold uppercase tracking-wider text-white transition-opacity hover:opacity-80"
+              className="w-full rounded-xl bg-foreground px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-white transition-opacity hover:opacity-80"
             >
               {UI_LABELS.GENERATE_REPORT}
             </button>
-            <button
-              type="button"
-              className="flex items-center gap-2.5 px-1 text-text-secondary transition-colors hover:text-foreground"
-            >
-              <HelpCircle className="h-4 w-4 shrink-0" />
-              <span className="whitespace-nowrap text-xs font-semibold uppercase tracking-wider">
-                {UI_LABELS.SUPPORT}
-              </span>
-            </button>
-            <button
-              type="button"
-              className="flex items-center gap-2.5 px-1 text-status-critical transition-opacity hover:opacity-70"
-            >
-              <LogOut className="h-4 w-4 shrink-0" />
-              <span className="whitespace-nowrap text-xs font-semibold uppercase tracking-wider">
-                {UI_LABELS.SIGN_OUT}
-              </span>
-            </button>
+            <div className="flex flex-col gap-3 px-1">
+              <button
+                type="button"
+                className="flex items-center gap-2.5 text-text-secondary transition-colors hover:text-foreground"
+              >
+                <HelpCircle className="h-4 w-4 shrink-0" />
+                <span className="whitespace-nowrap text-[11px] font-bold uppercase tracking-wider">
+                  {UI_LABELS.SUPPORT}
+                </span>
+              </button>
+              <button
+                type="button"
+                className="flex items-center gap-2.5 text-status-critical transition-opacity hover:opacity-70"
+              >
+                <LogOut className="h-4 w-4 shrink-0" />
+                <span className="whitespace-nowrap text-[11px] font-bold uppercase tracking-wider">
+                  {UI_LABELS.SIGN_OUT}
+                </span>
+              </button>
+            </div>
           </div>
         </div>
       </aside>
