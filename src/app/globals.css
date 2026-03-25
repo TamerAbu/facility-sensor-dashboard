@@ -88,7 +88,7 @@ body {
 
 /* Clean sidebar */
 .sidebar {
-  background: var(--surface);
+  background: var(--surface-secondary);
   border-right: 1px solid var(--border);
 }
 
