@@ -18,7 +18,10 @@ const THRESHOLD_ROWS = [
   { label: 'Temp Warning', value: `${TEMP_OK_MAX}–${TEMP_WARNING_MAX}°C` },
   { label: 'Temp Critical', value: `> ${TEMP_WARNING_MAX}°C` },
   { label: 'Moisture OK', value: `< ${MOISTURE_OK_MAX}%` },
-  { label: 'Moisture Warning', value: `${MOISTURE_OK_MAX}–${MOISTURE_WARNING_MAX}%` },
+  {
+    label: 'Moisture Warning',
+    value: `${MOISTURE_OK_MAX}–${MOISTURE_WARNING_MAX}%`,
+  },
   { label: 'Moisture Critical', value: `> ${MOISTURE_WARNING_MAX}%` },
   { label: 'Sensor Cycle', value: `${CYCLE_INTERVAL_HOURS}h` },
 ];
@@ -47,9 +50,7 @@ export const SettingsButton = () => {
                 key={row.label}
                 className="flex items-center justify-between rounded-lg bg-surface-secondary px-3 py-1.5"
               >
-                <span className="text-xs text-text-secondary">
-                  {row.label}
-                </span>
+                <span className="text-xs text-text-secondary">{row.label}</span>
                 <span className="text-xs font-bold tabular-nums">
                   {row.value}
                 </span>

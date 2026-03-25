@@ -200,12 +200,12 @@ export const EXTERNAL_LABELS = {
 // Map view constants — piles in Emek Hefer Industrial Park
 export const PILE_COORDINATES: Record<string, GeoCoordinate> = {
   'pile-north': { lat: 32.3922, lng: 34.8798 },
-  'pile-south': { lat: 32.3908, lng: 34.8800 },
+  'pile-south': { lat: 32.3908, lng: 34.88 },
   'pile-east': { lat: 32.3914, lng: 34.8818 },
   'pile-west': { lat: 32.3916, lng: 34.8782 },
 };
 
-export const MAP_CENTER: GeoCoordinate = { lat: 32.3915, lng: 34.8800 };
+export const MAP_CENTER: GeoCoordinate = { lat: 32.3915, lng: 34.88 };
 export const MAP_DEFAULT_ZOOM = 17;
 
 // Grain types

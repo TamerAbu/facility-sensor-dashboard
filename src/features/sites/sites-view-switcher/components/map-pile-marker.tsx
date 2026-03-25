@@ -71,9 +71,7 @@ export const MapPileMarker = ({ pile }: MapPileMarkerProps) => (
     <Popup className="map-popup" closeButton={false}>
       <div className="w-[220px] p-1">
         <div className="flex items-center justify-between">
-          <h3 className="text-[15px] font-bold text-foreground">
-            {pile.name}
-          </h3>
+          <h3 className="text-[15px] font-bold text-foreground">{pile.name}</h3>
           <span
             className={`rounded-md px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide ${STATUS_BG[pile.status]}`}
           >
