@@ -1,3 +1,5 @@
+**The System Design document (`docs/System Design.pdf`) is the answer for Task 1 of the assignment.**
+
 # agriQ Facility Sensor Dashboard
 
 Operator dashboard for monitoring grain storage conditions at the Harish 7 facility. Built for non-technical warehouse operators who need to act on sensor alerts quickly.
