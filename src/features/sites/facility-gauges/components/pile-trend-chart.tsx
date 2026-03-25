@@ -13,28 +13,11 @@ import {
   YAxis,
 } from 'recharts';
 
-import { MOISTURE_OK_MAX, TEMP_OK_MAX } from '@/lib/constants';
+import { GAUGE_LABELS } from '@/lib/constants';
 import type { TrendDataPoint } from '@/lib/types';
-
-type TrendMetric = 'temperature' | 'moisture';
-
-const PILE_COLORS = ['#22c55e', '#f59e0b', '#ef4444', '#3b82f6'];
-
-const METRIC_CONFIG: Record<
-  TrendMetric,
-  { unit: string; threshold: number; thresholdLabel: string }
-> = {
-  temperature: {
-    unit: '°C',
-    threshold: TEMP_OK_MAX,
-    thresholdLabel: `${TEMP_OK_MAX}°C Warning`,
-  },
-  moisture: {
-    unit: '%',
-    threshold: MOISTURE_OK_MAX,
-    thresholdLabel: `${MOISTURE_OK_MAX}% Warning`,
-  },
-};
+import { MetricToggle } from './metric-toggle';
+import { METRIC_CONFIG, PILE_COLORS } from './trend-chart-config';
+import type { TrendMetric } from './trend-chart-config';
 
 interface PileTrendChartProps {
   data: TrendDataPoint[];
@@ -44,35 +27,16 @@ interface PileTrendChartProps {
 export const PileTrendChart = ({ data, pileNames }: PileTrendChartProps) => {
   const [metric, setMetric] = useState<TrendMetric>('temperature');
   const config = METRIC_CONFIG[metric];
+  const title =
+    metric === 'temperature'
+      ? GAUGE_LABELS.TREND_TEMP_TITLE
+      : GAUGE_LABELS.TREND_MOISTURE_TITLE;
 
   return (
     <div className="rounded-xl border border-border bg-surface p-4">
       <div className="mb-3 flex items-center justify-between">
-        <p className="text-sm font-semibold">
-          Pile {metric === 'temperature' ? 'Temperature' : 'Moisture'} Trends
-        </p>
-        <div className="flex gap-1 rounded-lg border border-border bg-surface-secondary p-0.5">
-          <button
-            onClick={() => setMetric('temperature')}
-            className={`rounded-md px-3 py-1 text-xs font-medium transition-colors ${
-              metric === 'temperature'
-                ? 'bg-surface text-foreground shadow-sm'
-                : 'text-text-secondary hover:text-foreground'
-            }`}
-          >
-            Temp
-          </button>
-          <button
-            onClick={() => setMetric('moisture')}
-            className={`rounded-md px-3 py-1 text-xs font-medium transition-colors ${
-              metric === 'moisture'
-                ? 'bg-surface text-foreground shadow-sm'
-                : 'text-text-secondary hover:text-foreground'
-            }`}
-          >
-            Moisture
-          </button>
-        </div>
+        <p className="text-sm font-semibold">{title}</p>
+        <MetricToggle metric={metric} onChange={setMetric} />
       </div>
       <ResponsiveContainer width="100%" height={220}>
         <LineChart

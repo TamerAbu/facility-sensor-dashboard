@@ -1,14 +1,18 @@
 'use client';
 
 import type { SensorStatus } from '@/lib/types';
+import {
+  ARC_START_ANGLE,
+  CX,
+  CY,
+  describeArc,
+  polarToCartesian,
+} from './gauge-dial-utils';
+import type { GaugeZone } from './gauge-dial-utils';
 
-export interface GaugeZone {
-  start: number;
-  end: number;
-  color: string;
-}
+export type { GaugeZone } from './gauge-dial-utils';
 
-export interface GaugeDialProps {
+interface GaugeDialProps {
   label: string;
   value: number;
   displayValue: string;
@@ -19,28 +23,11 @@ export interface GaugeDialProps {
   zones: GaugeZone[];
 }
 
-const ARC_START_ANGLE = Math.PI;
-const CX = 60;
-const CY = 58;
-const RADIUS = 42;
-
-const polarToCartesian = (angle: number) => ({
-  x: CX + RADIUS * Math.cos(angle),
-  y: CY - RADIUS * Math.sin(angle),
-});
-
-const describeArc = (startAngle: number, endAngle: number) => {
-  const start = polarToCartesian(startAngle);
-  const end = polarToCartesian(endAngle);
-  const largeArc = startAngle - endAngle > Math.PI ? 1 : 0;
-  return `M ${start.x} ${start.y} A ${RADIUS} ${RADIUS} 0 ${largeArc} 1 ${end.x} ${end.y}`;
-};
-
-const STATUS_COLORS: Record<SensorStatus, string> = {
-  ok: 'var(--status-ok)',
-  warning: 'var(--status-warning)',
-  critical: 'var(--status-critical)',
-  faulty: 'var(--status-faulty)',
+const STATUS_TEXT_CLASS: Record<SensorStatus, string> = {
+  ok: 'text-status-ok',
+  warning: 'text-status-warning',
+  critical: 'text-status-critical',
+  faulty: 'text-status-faulty',
 };
 
 export const GaugeDial = ({
@@ -53,8 +40,9 @@ export const GaugeDial = ({
   max,
   zones,
 }: GaugeDialProps) => {
+  const range = max - min;
   const clampedValue = Math.min(Math.max(value, min), max);
-  const fraction = (clampedValue - min) / (max - min);
+  const fraction = range > 0 ? (clampedValue - min) / range : 0;
   const needleAngle = ARC_START_ANGLE - fraction * Math.PI;
   const needleTip = polarToCartesian(needleAngle);
 
@@ -66,9 +54,8 @@ export const GaugeDial = ({
       <svg viewBox="0 0 120 75" className="mt-1 w-full max-w-[130px]">
         {zones.map((zone, i) => {
           const zStart =
-            ARC_START_ANGLE - ((zone.start - min) / (max - min)) * Math.PI;
-          const zEnd =
-            ARC_START_ANGLE - ((zone.end - min) / (max - min)) * Math.PI;
+            ARC_START_ANGLE - ((zone.start - min) / range) * Math.PI;
+          const zEnd = ARC_START_ANGLE - ((zone.end - min) / range) * Math.PI;
           return (
             <path
               key={i}
@@ -92,10 +79,7 @@ export const GaugeDial = ({
         <circle cx={CX} cy={CY} r="3.5" fill="var(--foreground)" />
       </svg>
       <p className="mt-0.5 font-mono text-xl font-bold">{displayValue}</p>
-      <p
-        className="text-[11px] font-semibold"
-        style={{ color: STATUS_COLORS[status] }}
-      >
+      <p className={`text-[11px] font-semibold ${STATUS_TEXT_CLASS[status]}`}>
         {statusLabel}
       </p>
     </div>

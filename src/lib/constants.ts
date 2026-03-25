@@ -217,8 +217,6 @@ export const TEMP_DISPLAY_CEILING = 70;
 
 // Facility gauge labels
 export const GAUGE_LABELS = {
-  AVG_TEMPERATURE: 'Avg Temperature',
-  AVG_MOISTURE: 'Avg Moisture',
   SENSOR_HEALTH: 'Sensor Health',
   ACTIVE_ALERTS: 'Active Alerts',
   NORMAL: 'Normal',
@@ -226,6 +224,10 @@ export const GAUGE_LABELS = {
   CRITICAL_LEVEL: 'Critical',
   FAULTY_SENSORS: 'Faulty',
   NO_ALERTS: 'All Clear',
+  TEMP_TOGGLE: 'Temp',
+  MOISTURE_TOGGLE: 'Moisture',
+  TREND_TEMP_TITLE: 'Pile Temperature Trends',
+  TREND_MOISTURE_TITLE: 'Pile Moisture Trends',
 } as const;
 
 // Gauge range limits
@@ -234,6 +236,12 @@ export const GAUGE_MOISTURE_MAX = 25;
 export const GAUGE_HEALTH_MIN = 0;
 export const GAUGE_HEALTH_MAX = 100;
 export const GAUGE_ALERTS_MAX = 10;
+
+// Gauge health/alert thresholds
+export const HEALTH_CRITICAL_MAX = 60;
+export const HEALTH_WARNING_MAX = 85;
+export const ALERT_WARNING_MIN = 1;
+export const ALERT_CRITICAL_MIN = 4;
 
 // Grain types
 export const GRAIN_TYPES = {
