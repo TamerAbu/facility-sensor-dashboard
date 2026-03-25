@@ -1,11 +1,12 @@
 'use client';
 
 import {
+  LayoutGrid,
   MapPin,
   PanelLeftClose,
   PanelLeftOpen,
+  Radio,
   TriangleAlert,
-  Warehouse,
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -27,24 +28,29 @@ export const Sidebar = ({ alertCount, siteName, children }: SidebarProps) => {
           collapsed ? 'w-16' : 'w-60'
         }`}
       >
-        <div className="border-b border-border px-4 py-5">
-          <div className="flex h-8 items-center justify-center">
+        <div className="px-4 py-6">
+          <div className="flex items-center justify-center">
             {collapsed ? (
               <button
                 onClick={() => setCollapsed(false)}
-                className="flex h-8 w-8 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-surface-secondary"
+                className="flex h-10 w-10 items-center justify-center rounded-xl bg-foreground text-white"
                 title="Expand sidebar"
               >
                 <PanelLeftOpen className="h-4 w-4" />
               </button>
             ) : (
               <>
-                <div className="sidebar-logo flex h-8 w-8 shrink-0 items-center justify-center rounded-lg">
-                  <span className="text-sm font-bold text-white">aQ</span>
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-foreground">
+                  <Radio className="h-5 w-5 text-white" />
                 </div>
-                <span className="ml-2.5 flex-1 whitespace-nowrap text-lg font-bold tracking-tight">
-                  agriQ
-                </span>
+                <div className="ml-3 flex-1 overflow-hidden">
+                  <span className="whitespace-nowrap text-lg font-bold tracking-tight">
+                    agriQ
+                  </span>
+                  <p className="whitespace-nowrap text-[8px] font-bold uppercase tracking-[0.2em] text-text-secondary">
+                    Industrial Sentinel
+                  </p>
+                </div>
                 <button
                   onClick={() => setCollapsed(true)}
                   className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-surface-secondary"
@@ -57,15 +63,10 @@ export const Sidebar = ({ alertCount, siteName, children }: SidebarProps) => {
           </div>
         </div>
 
-        <nav className="flex flex-1 flex-col gap-1 px-3 pt-4">
-          <div className="mb-2 h-5 overflow-hidden px-3">
-            <p className="whitespace-nowrap text-[10px] font-semibold uppercase tracking-widest text-text-secondary">
-              Monitor
-            </p>
-          </div>
+        <nav className="flex flex-1 flex-col gap-1.5 px-3 pt-4">
           <NavLink
             href="/sites"
-            icon={<Warehouse className="h-[18px] w-[18px]" />}
+            icon={<LayoutGrid className="h-[18px] w-[18px]" />}
             label="Sites"
             collapsed={collapsed}
           />

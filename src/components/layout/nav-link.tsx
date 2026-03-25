@@ -26,14 +26,14 @@ export const NavLink = ({
     <Link
       href={href}
       title={collapsed ? label : undefined}
-      className={`group relative flex items-center gap-3 overflow-hidden rounded-lg px-3 py-2.5 text-[13px] font-medium whitespace-nowrap transition-all duration-300 ${
+      className={`group relative flex items-center gap-3 overflow-hidden rounded-xl px-3.5 py-3 text-[13px] font-bold uppercase tracking-wider whitespace-nowrap transition-all duration-200 ${
         isActive
-          ? 'sidebar-nav-active font-semibold text-foreground'
+          ? 'sidebar-nav-active text-foreground'
           : 'text-text-secondary hover:bg-surface-secondary hover:text-foreground'
       }`}
     >
       <span
-        className={`shrink-0 transition-colors ${isActive ? 'text-accent' : 'text-text-secondary group-hover:text-foreground'}`}
+        className={`shrink-0 transition-colors ${isActive ? 'text-foreground' : 'text-text-secondary group-hover:text-foreground'}`}
       >
         {icon}
       </span>
