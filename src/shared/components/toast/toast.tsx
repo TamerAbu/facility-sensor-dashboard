@@ -28,13 +28,13 @@ export const Toast = ({
 
   return (
     <div className="animate-slide-up flex items-center gap-3 rounded-lg bg-foreground px-5 py-3 text-sm text-white shadow-lg">
-      <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-400" />
+      <CheckCircle2 className="h-4 w-4 shrink-0 text-status-ok" />
       <span className="flex-1">{message}</span>
       {undoAlertId && onUndo && (
         <button
           type="button"
           onClick={() => onUndo(undoAlertId)}
-          className="font-bold uppercase tracking-wider text-amber-300 transition-opacity hover:opacity-80"
+          className="font-bold uppercase tracking-wider text-status-warning transition-opacity hover:opacity-80"
         >
           {UI_LABELS.UNDO}
         </button>

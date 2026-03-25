@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { STATUS_LABELS } from '@/lib/constants';
 import { buildAllSensorHistories } from '@/lib/mock-history';
@@ -29,7 +29,13 @@ export const PileDetailPanel = ({ sensors }: PileDetailPanelProps) => {
   const [highlightedSensorId, setHighlightedSensorId] = useState<string | null>(
     null,
   );
-  const timerRef = useRef<ReturnType<typeof setTimeout>>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
 
   const layerSensors = sensors.filter((s) => s.layer === activeLayer);
   const histories = useMemo(() => buildAllSensorHistories(sensors), [sensors]);

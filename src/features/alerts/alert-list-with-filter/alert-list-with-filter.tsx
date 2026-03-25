@@ -58,7 +58,7 @@ export const AlertListWithFilter = ({ alerts }: AlertListWithFilterProps) => {
 
   const sortedAlerts = sortAlerts(filteredAlerts, activeSort);
 
-  if (alerts.length === 0) {
+  if (visibleAlerts.length === 0) {
     return (
       <div className="mt-8 flex flex-col items-center gap-3 py-16">
         <CheckCircle2 className="h-10 w-10 text-status-ok" />

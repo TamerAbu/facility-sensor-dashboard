@@ -134,12 +134,12 @@ const PILES: Pile[] = [
   buildPile('pile-south', 'Emek South', 'Wheat', 28, 13.2, [
     { sensorIds: [0, 1, 2, 3], temperature: 44, moisture: 16.1 },
   ]),
-  buildPile('pile-east', 'Emek East', 'Wheat', 27, 13.0, [
+  buildPile('pile-east', 'Emek East', 'Wheat', 26, 13.0, [
     { sensorIds: [10, 11, 12, 13, 14], temperature: 51, moisture: 18.4 },
     { sensorIds: [27], temperature: 95, moisture: 5.2, isFaulty: true },
     { sensorIds: [21], batteryPercent: 15 },
   ]),
-  buildPile('pile-west', 'Emek West', 'Wheat', 27, 13.0, [
+  buildPile('pile-west', 'Emek West', 'Wheat', 35, 14.8, [
     { sensorIds: [5, 6, 7], temperature: 39, moisture: 16.2 },
     { sensorIds: [28, 29], lastTransmissionAt: '2026-03-24T14:00:00Z' },
   ]),

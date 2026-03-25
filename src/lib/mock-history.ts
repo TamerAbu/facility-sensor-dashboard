@@ -1,3 +1,4 @@
+import { CYCLE_INTERVAL_HOURS } from './constants';
 import type { SensorHistory, SensorReading } from './types';
 
 const HISTORY_DAYS = 14;
@@ -5,11 +6,9 @@ const READINGS_PER_DAY = 2;
 const TOTAL_POINTS = HISTORY_DAYS * READINGS_PER_DAY;
 const BASE_TIMESTAMP = new Date('2026-03-25T08:00:00Z');
 
-const CYCLE_HOURS = 12;
-
 const buildTimestamp = (cyclesAgo: number): string => {
   const date = new Date(
-    BASE_TIMESTAMP.getTime() - cyclesAgo * CYCLE_HOURS * 3600_000,
+    BASE_TIMESTAMP.getTime() - cyclesAgo * CYCLE_INTERVAL_HOURS * 3600_000,
   );
   return date.toISOString();
 };
@@ -51,7 +50,10 @@ export const buildAllSensorHistories = (
 export const getHistoryForSensor = (
   pileId: string,
   sensorId: string,
+  sensors: SensorReading[],
 ): SensorHistory | undefined => {
   if (pileId === 'pile-west' && sensorId === 'S16') return SPIKE_HISTORY;
-  return undefined;
+  const sensor = sensors.find((s) => s.sensorId === sensorId);
+  if (!sensor) return undefined;
+  return buildSensorHistory(sensor);
 };

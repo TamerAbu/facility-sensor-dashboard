@@ -41,18 +41,18 @@ export const NotificationButton = () => {
             ) : (
               <>
                 {activeCriticalCount > 0 && (
-                  <div className="flex items-center gap-3 rounded-lg bg-red-50 px-3 py-2">
+                  <div className="flex items-center gap-3 rounded-lg bg-status-critical/10 px-3 py-2">
                     <span className="h-2 w-2 rounded-full bg-status-critical" />
-                    <span className="text-sm font-semibold text-red-700">
+                    <span className="text-sm font-semibold text-status-critical">
                       {activeCriticalCount} critical alert
                       {activeCriticalCount > 1 ? 's' : ''}
                     </span>
                   </div>
                 )}
                 {activeWarningCount > 0 && (
-                  <div className="flex items-center gap-3 rounded-lg bg-amber-50 px-3 py-2">
+                  <div className="flex items-center gap-3 rounded-lg bg-status-warning/10 px-3 py-2">
                     <span className="h-2 w-2 rounded-full bg-status-warning" />
-                    <span className="text-sm font-semibold text-amber-700">
+                    <span className="text-sm font-semibold text-status-warning">
                       {activeWarningCount} warning alert
                       {activeWarningCount > 1 ? 's' : ''}
                     </span>

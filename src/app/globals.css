@@ -162,9 +162,9 @@ body {
 
 /* Sensor dot */
 .sensor-dot {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 42px;
+  height: 32px;
+  border-radius: 5px;
   border: 3px solid var(--surface);
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.1),

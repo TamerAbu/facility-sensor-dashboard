@@ -136,3 +136,8 @@ export interface SensorHistory {
   sensorId: string;
   readings: HistoricalReading[];
 }
+
+export interface TrendDataPoint {
+  date: string;
+  [key: string]: string | number;
+}
