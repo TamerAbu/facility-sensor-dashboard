@@ -1,10 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 
 import { STATUS_LABELS } from '@/lib/constants';
+import { buildAllSensorHistories } from '@/lib/mock-history';
 import type { Layer, SensorReading, SensorStatus } from '@/lib/types';
 import { SensorLayerView } from '@/features/pile-detail/sensor-layer-view';
+import { SensorDashboardGrid } from '@/features/pile-detail/sensor-dashboard';
 
 import { LayerTabs } from './components/layer-tabs';
 import { LayerStatsCards } from './components/layer-stats-cards';
@@ -20,9 +22,29 @@ const LEGEND_ITEMS: { status: SensorStatus; color: string }[] = [
   { status: 'faulty', color: 'bg-status-faulty' },
 ];
 
+const HIGHLIGHT_DURATION_MS = 2000;
+
 export const PileDetailPanel = ({ sensors }: PileDetailPanelProps) => {
   const [activeLayer, setActiveLayer] = useState<Layer>('bottom');
+  const [highlightedSensorId, setHighlightedSensorId] = useState<string | null>(
+    null,
+  );
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(null);
+
   const layerSensors = sensors.filter((s) => s.layer === activeLayer);
+  const histories = useMemo(() => buildAllSensorHistories(sensors), [sensors]);
+
+  const handleSensorClick = useCallback((sensorId: string) => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    setHighlightedSensorId(sensorId);
+    document
+      .getElementById(`sensor-${sensorId}`)
+      ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    timerRef.current = setTimeout(
+      () => setHighlightedSensorId(null),
+      HIGHLIGHT_DURATION_MS,
+    );
+  }, []);
 
   return (
     <div className="mt-8">
@@ -40,11 +62,20 @@ export const PileDetailPanel = ({ sensors }: PileDetailPanelProps) => {
         </div>
       </div>
 
+      <LayerStatsCards sensors={layerSensors} />
+
       <div className="mt-6">
-        <SensorLayerView sensors={layerSensors} />
+        <SensorLayerView
+          sensors={layerSensors}
+          onSensorClick={handleSensorClick}
+        />
       </div>
 
-      <LayerStatsCards sensors={layerSensors} />
+      <SensorDashboardGrid
+        sensors={layerSensors}
+        histories={histories}
+        highlightedSensorId={highlightedSensorId}
+      />
     </div>
   );
 };

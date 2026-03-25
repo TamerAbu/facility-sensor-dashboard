@@ -7,9 +7,10 @@ import type { SensorReading } from '@/lib/types';
 
 interface SensorDotProps {
   sensor: SensorReading;
+  onSensorClick?: (sensorId: string) => void;
 }
 
-export const SensorDot = ({ sensor }: SensorDotProps) => {
+export const SensorDot = ({ sensor, onSensorClick }: SensorDotProps) => {
   const [showTooltip, setShowTooltip] = useState(false);
 
   const leftPercent = (sensor.position.x / PILE_WIDTH) * 100;
@@ -29,6 +30,7 @@ export const SensorDot = ({ sensor }: SensorDotProps) => {
       onMouseLeave={() => setShowTooltip(false)}
       onFocus={() => setShowTooltip(true)}
       onBlur={() => setShowTooltip(false)}
+      onClick={() => onSensorClick?.(sensor.sensorId)}
     >
       <span className="text-[9px] font-extrabold text-white">
         {sensor.sensorId}
