@@ -1,4 +1,4 @@
-import { Bell, MapPin, Settings, User } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 
 import { UI_LABELS } from '@/lib/constants';
 import {
@@ -10,7 +10,8 @@ import {
 import type { PileStatus } from '@/lib/types';
 import { processSiteData } from '@/lib/risk-engine';
 import { ExternalContextBar } from '@/features/sites/external-context';
-import { PileCard } from '@/features/sites/pile-card';
+import { SitesViewSwitcher } from '@/features/sites/sites-view-switcher';
+import { HeaderActions } from '@/shared/components/header-actions';
 
 const SEVERITY_ORDER: Record<PileStatus, number> = {
   critical: 0,
@@ -38,13 +39,7 @@ export const SitesScreen = () => {
             {SITE.name}, Emek Hefer
           </p>
         </div>
-        <div className="flex items-center gap-4">
-          <Bell className="h-5 w-5 text-foreground" strokeWidth={2.5} />
-          <Settings className="h-5 w-5 text-foreground" strokeWidth={2.5} />
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-foreground">
-            <User className="h-5 w-5 text-white" />
-          </div>
-        </div>
+        <HeaderActions />
       </div>
 
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -71,11 +66,7 @@ export const SitesScreen = () => {
         piles={sortedPiles}
       />
 
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-        {sortedPiles.map((pile) => (
-          <PileCard key={pile.id} pile={pile} />
-        ))}
-      </div>
+      <SitesViewSwitcher piles={sortedPiles} />
     </div>
   );
 };
