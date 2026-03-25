@@ -84,15 +84,15 @@ export const Sidebar = ({ alertCount, children }: SidebarProps) => {
         </nav>
 
         {/* Footer */}
-        <div className="px-4 pb-6">
-          <div className="flex flex-col gap-4 overflow-hidden">
+        <div className="px-4 pb-8">
+          <div className="flex flex-col gap-5 overflow-hidden">
             <button
               type="button"
               className="w-full rounded-xl bg-foreground px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-white transition-opacity hover:opacity-80"
             >
               {UI_LABELS.GENERATE_REPORT}
             </button>
-            <div className="flex flex-col gap-3 px-1">
+            <div className="flex flex-col gap-4 px-1">
               <button
                 type="button"
                 className="flex items-center gap-2.5 text-text-secondary transition-colors hover:text-foreground"
