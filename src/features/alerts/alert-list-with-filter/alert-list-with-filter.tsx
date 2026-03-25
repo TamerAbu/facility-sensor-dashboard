@@ -2,31 +2,32 @@
 
 import { useState } from 'react';
 
-import { CheckCircle2, ListFilter } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 
 import { UI_LABELS } from '@/lib/constants';
-import type { Alert, AlertSeverity } from '@/lib/types';
+import type { Alert } from '@/lib/types';
 import { AlertCard } from '@/features/alerts/alert-card';
 
-type FilterOption = 'all' | AlertSeverity;
-
-const FILTER_OPTIONS: { value: FilterOption; label: string }[] = [
-  { value: 'all', label: UI_LABELS.ALERT_FILTER_ALL },
-  { value: 'critical', label: UI_LABELS.ALERT_FILTER_CRITICAL },
-  { value: 'warning', label: UI_LABELS.ALERT_FILTER_WARNING },
-];
+import {
+  AlertFilterBar,
+  type SeverityFilter,
+  type TypeFilter,
+} from './components/alert-filter-bar';
 
 interface AlertListWithFilterProps {
   alerts: Alert[];
 }
 
 export const AlertListWithFilter = ({ alerts }: AlertListWithFilterProps) => {
-  const [activeFilter, setActiveFilter] = useState<FilterOption>('all');
+  const [activeSeverity, setActiveSeverity] = useState<SeverityFilter>('all');
+  const [activeType, setActiveType] = useState<TypeFilter>('all');
 
-  const filteredAlerts =
-    activeFilter === 'all'
-      ? alerts
-      : alerts.filter((alert) => alert.severity === activeFilter);
+  const filteredAlerts = alerts.filter((alert) => {
+    const matchesSeverity =
+      activeSeverity === 'all' || alert.severity === activeSeverity;
+    const matchesType = activeType === 'all' || alert.alertType === activeType;
+    return matchesSeverity && matchesType;
+  });
 
   if (alerts.length === 0) {
     return (
@@ -41,28 +42,12 @@ export const AlertListWithFilter = ({ alerts }: AlertListWithFilterProps) => {
 
   return (
     <div className="mt-6">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex gap-2">
-          {FILTER_OPTIONS.map((option) => (
-            <button
-              key={option.value}
-              type="button"
-              onClick={() => setActiveFilter(option.value)}
-              className={`rounded-lg px-5 py-2 text-sm font-semibold transition-colors ${
-                activeFilter === option.value
-                  ? 'bg-foreground text-white'
-                  : 'bg-surface-secondary text-text-secondary hover:bg-border'
-              }`}
-            >
-              {option.label}
-            </button>
-          ))}
-        </div>
-        <div className="flex items-center gap-2 text-sm text-text-secondary">
-          <ListFilter className="h-4 w-4" />
-          {UI_LABELS.SORTED_BY_SEVERITY}
-        </div>
-      </div>
+      <AlertFilterBar
+        activeSeverity={activeSeverity}
+        activeType={activeType}
+        onSeverityChange={setActiveSeverity}
+        onTypeChange={setActiveType}
+      />
 
       <div className="mt-6 space-y-5">
         {filteredAlerts.length > 0 ? (

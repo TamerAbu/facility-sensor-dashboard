@@ -5,6 +5,8 @@ import type { Alert, AlertSeverity } from '@/lib/types';
 
 import { AlertActionBox } from './components/alert-action-box';
 import { AlertCardActions } from './components/alert-card-actions';
+import { AlertSensorReadings } from './components/alert-sensor-readings';
+import { AlertTypeBadge } from './components/alert-type-badge';
 
 interface AlertCardProps {
   alert: Alert;
@@ -52,25 +54,15 @@ export const AlertCard = ({ alert }: AlertCardProps) => {
         </div>
       </div>
 
-      <h3 className="mt-2 text-xl font-bold tracking-tight">
+      <div className="mt-2">
+        <AlertTypeBadge alertType={alert.alertType} />
+      </div>
+
+      <h3 className="mt-1 text-xl font-bold tracking-tight">
         {alert.pileName} - {layerLabel}
       </h3>
 
-      <div className="mt-4">
-        <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-text-secondary">
-          {UI_LABELS.ALERT_AFFECTED_SENSORS}:
-        </span>
-        <span className="ml-2 inline-flex gap-1.5">
-          {alert.affectedSensors.map((sensorId) => (
-            <span
-              key={sensorId}
-              className="rounded-md border border-border bg-surface-secondary px-2.5 py-0.5 font-mono text-xs font-medium"
-            >
-              {sensorId}
-            </span>
-          ))}
-        </span>
-      </div>
+      <AlertSensorReadings readings={alert.readings} />
 
       <AlertActionBox
         action={alert.recommendedAction}

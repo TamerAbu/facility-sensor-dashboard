@@ -25,9 +25,11 @@ const buildPosition = (col: number, row: number, seed: number) => ({
 
 interface SensorOverride {
   sensorIds: number[];
-  temperature: number;
-  moisture: number;
+  temperature?: number;
+  moisture?: number;
   isFaulty?: boolean;
+  batteryPercent?: number;
+  lastTransmissionAt?: string;
 }
 
 const buildSensors = (
@@ -37,7 +39,13 @@ const buildSensors = (
 ): SensorReading[] => {
   const overrideMap = new Map<
     number,
-    { temperature: number; moisture: number; isFaulty: boolean }
+    {
+      temperature?: number;
+      moisture?: number;
+      isFaulty: boolean;
+      batteryPercent?: number;
+      lastTransmissionAt?: string;
+    }
   >();
 
   for (const override of overrides) {
@@ -46,6 +54,8 @@ const buildSensors = (
         temperature: override.temperature,
         moisture: override.moisture,
         isFaulty: override.isFaulty ?? false,
+        batteryPercent: override.batteryPercent,
+        lastTransmissionAt: override.lastTransmissionAt,
       });
     }
   }
@@ -58,13 +68,18 @@ const buildSensors = (
     const position = buildPosition(col, row, i);
 
     const entry = overrideMap.get(i);
-    const temperature = entry
-      ? entry.temperature + ((i % 3) - 1) * 0.3
-      : normalTemp + ((i % 5) - 2) * 0.5;
-    const moisture = entry
-      ? entry.moisture + ((i % 3) - 1) * 0.2
-      : normalMoisture + ((i % 4) - 1.5) * 0.3;
+    const temperature =
+      entry?.temperature != null
+        ? entry.temperature + ((i % 3) - 1) * 0.3
+        : normalTemp + ((i % 5) - 2) * 0.5;
+    const moisture =
+      entry?.moisture != null
+        ? entry.moisture + ((i % 3) - 1) * 0.2
+        : normalMoisture + ((i % 4) - 1.5) * 0.3;
     const isFaulty = entry?.isFaulty ?? false;
+    const batteryPercent = entry?.batteryPercent ?? 85 + (i % 15);
+    const lastTransmissionAt =
+      entry?.lastTransmissionAt ?? '2026-03-25T08:00:00Z';
 
     return {
       sensorId: buildSensorId(i),
@@ -74,6 +89,8 @@ const buildSensors = (
       moisture: Math.round(moisture * 10) / 10,
       status: 'ok' as const,
       isFaulty,
+      batteryPercent,
+      lastTransmissionAt,
     };
   });
 };
@@ -105,12 +122,14 @@ const PILES: Pile[] = [
   buildPile('pile-south', 'Emek South', 'Wheat', 28, 13.2, [
     { sensorIds: [0, 1, 2, 3], temperature: 44, moisture: 16.1 },
   ]),
-  buildPile('pile-east', 'Emek East', 'Wheat', 26, 13.0, [
+  buildPile('pile-east', 'Emek East', 'Wheat', 27, 13.0, [
     { sensorIds: [10, 11, 12, 13, 14], temperature: 51, moisture: 18.4 },
     { sensorIds: [27], temperature: 95, moisture: 5.2, isFaulty: true },
+    { sensorIds: [21], batteryPercent: 15 },
   ]),
-  buildPile('pile-west', 'Emek West', 'Wheat', 35, 14.8, [
+  buildPile('pile-west', 'Emek West', 'Wheat', 27, 13.0, [
     { sensorIds: [5, 6, 7], temperature: 39, moisture: 16.2 },
+    { sensorIds: [28, 29], lastTransmissionAt: '2026-03-24T14:00:00Z' },
   ]),
 ];
 

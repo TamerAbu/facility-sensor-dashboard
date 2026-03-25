@@ -11,6 +11,20 @@ export const MOISTURE_WARNING_MAX = 17;
 // Faulty sensor detection
 export const FAULTY_DEVIATION_THRESHOLD = 15;
 
+// Rate-of-change thresholds
+export const RATE_GRADUAL_MIN_RISE = 0.5;
+export const RATE_GRADUAL_MIN_CYCLES = 3;
+export const RATE_SUDDEN_SPIKE = 8;
+
+// Sensor health thresholds
+export const BATTERY_WARNING_PERCENT = 20;
+export const BATTERY_CRITICAL_PERCENT = 10;
+export const MISSED_TRANSMISSION_THRESHOLD = 2;
+export const CYCLE_INTERVAL_HOURS = 6;
+
+// Mock current timestamp
+export const CURRENT_TIMESTAMP = '2026-03-25T08:30:00Z';
+
 // Pile dimensions (meters)
 export const PILE_WIDTH = 50;
 export const PILE_HEIGHT = 25;
@@ -39,6 +53,16 @@ export const RECOMMENDED_ACTIONS = {
   FAULTY_SENSOR: 'Sensor may be malfunctioning. Schedule physical inspection.',
   BOTH_WARNING:
     'Activate aeration immediately. If no improvement in 12h, begin grain transfer.',
+  GRADUAL_RISE:
+    'Temperature trending upward. Increase monitoring frequency and prepare aeration.',
+  SUDDEN_SPIKE:
+    'EMERGENCY: Sudden temperature spike detected. Activate aeration immediately and notify site manager via SMS.',
+  LOW_BATTERY_WARNING:
+    'Sensor battery below 20%. Schedule battery replacement within 7 days.',
+  LOW_BATTERY_CRITICAL:
+    'Sensor battery critically low. Replace immediately to avoid data gaps.',
+  MISSED_TRANSMISSION:
+    'Sensor has missed 2+ transmissions. Check antenna, wiring, or replace unit.',
 } as const;
 
 // Status labels
@@ -98,6 +122,10 @@ export const UI_LABELS = {
   GENERATE_REPORT: 'Generate Report',
   SUPPORT: 'Support',
   SIGN_OUT: 'Sign Out',
+  ALERT_TYPE_THRESHOLD: 'Threshold',
+  ALERT_TYPE_RATE_OF_CHANGE: 'Rate of Change',
+  ALERT_TYPE_SENSOR_HEALTH: 'Sensor Health',
+  ALERT_FILTER_ALL_TYPES: 'All Types',
 } as const;
 
 // External data labels

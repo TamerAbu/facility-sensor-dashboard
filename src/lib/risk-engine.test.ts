@@ -16,6 +16,8 @@ const makeSensor = (overrides: Partial<SensorReading> = {}): SensorReading => ({
   moisture: 10,
   status: 'ok',
   isFaulty: false,
+  batteryPercent: 95,
+  lastTransmissionAt: '2026-03-25T08:00:00Z',
   ...overrides,
 });
 

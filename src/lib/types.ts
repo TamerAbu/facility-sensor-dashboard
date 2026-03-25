@@ -6,6 +6,8 @@ export type Layer = 'bottom' | 'middle' | 'top';
 
 export type AlertSeverity = 'warning' | 'critical';
 
+export type AlertType = 'threshold' | 'rate-of-change' | 'sensor-health';
+
 export interface Position {
   x: number;
   y: number;
@@ -19,6 +21,8 @@ export interface SensorReading {
   moisture: number;
   status: SensorStatus;
   isFaulty: boolean;
+  batteryPercent: number;
+  lastTransmissionAt: string;
 }
 
 export interface Pile {
@@ -60,13 +64,32 @@ export interface CommodityPrice {
   changePercent: number;
 }
 
+export interface SensorReadingSummary {
+  sensorId: string;
+  temperature: number;
+  moisture: number;
+}
+
 export interface Alert {
   id: string;
   pileId: string;
   pileName: string;
   severity: AlertSeverity;
   affectedSensors: string[];
+  readings: SensorReadingSummary[];
   layer: Layer;
+  alertType: AlertType;
   description: string;
   recommendedAction: string;
+}
+
+export interface HistoricalReading {
+  temperature: number;
+  moisture: number;
+  timestamp: string;
+}
+
+export interface SensorHistory {
+  sensorId: string;
+  readings: HistoricalReading[];
 }
