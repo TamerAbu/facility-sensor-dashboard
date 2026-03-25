@@ -7,18 +7,9 @@ export const AlertsScreen = () => {
   const processedPiles = processSiteData(SITE.piles);
   const alerts = generateAlerts(processedPiles);
 
-  const criticalCount = alerts.filter(
-    (alert) => alert.severity === 'critical',
-  ).length;
-  const warningCount = alerts.length - criticalCount;
-
   return (
     <div>
-      <AlertSummaryBar
-        totalCount={alerts.length}
-        criticalCount={criticalCount}
-        warningCount={warningCount}
-      />
+      <AlertSummaryBar />
       <AlertListWithFilter alerts={alerts} />
     </div>
   );

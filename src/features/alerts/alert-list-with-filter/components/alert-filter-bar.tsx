@@ -1,7 +1,7 @@
-import { ListFilter } from 'lucide-react';
-
 import { UI_LABELS } from '@/lib/constants';
-import type { AlertSeverity, AlertType } from '@/lib/types';
+import type { AlertSeverity, AlertSortOption, AlertType } from '@/lib/types';
+
+import { AlertSortButton } from './alert-sort-button';
 
 type SeverityFilter = 'all' | AlertSeverity;
 type TypeFilter = 'all' | AlertType;
@@ -27,8 +27,10 @@ const TYPE_OPTIONS: FilterOption<TypeFilter>[] = [
 interface AlertFilterBarProps {
   activeSeverity: SeverityFilter;
   activeType: TypeFilter;
+  activeSort: AlertSortOption;
   onSeverityChange: (value: SeverityFilter) => void;
   onTypeChange: (value: TypeFilter) => void;
+  onSortChange: (value: AlertSortOption) => void;
 }
 
 const FilterPills = <T extends string>({
@@ -61,8 +63,10 @@ const FilterPills = <T extends string>({
 export const AlertFilterBar = ({
   activeSeverity,
   activeType,
+  activeSort,
   onSeverityChange,
   onTypeChange,
+  onSortChange,
 }: AlertFilterBarProps) => (
   <div className="flex flex-col gap-3">
     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -71,10 +75,7 @@ export const AlertFilterBar = ({
         active={activeSeverity}
         onChange={onSeverityChange}
       />
-      <div className="flex items-center gap-2 text-sm text-text-secondary">
-        <ListFilter className="h-4 w-4" />
-        {UI_LABELS.SORTED_BY_SEVERITY}
-      </div>
+      <AlertSortButton activeSort={activeSort} onSortChange={onSortChange} />
     </div>
     <FilterPills
       options={TYPE_OPTIONS}
