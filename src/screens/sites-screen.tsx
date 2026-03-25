@@ -1,6 +1,6 @@
-import { Activity, MapPin } from 'lucide-react';
+import { Bell, MapPin, Settings } from 'lucide-react';
 
-import { STATUS_LABELS, UI_LABELS } from '@/lib/constants';
+import { UI_LABELS } from '@/lib/constants';
 import {
   COMMODITY_PRICE,
   GATEWAY_READING,
@@ -24,44 +24,50 @@ export const SitesScreen = () => {
     (a, b) => SEVERITY_ORDER[a.status] - SEVERITY_ORDER[b.status],
   );
 
-  const criticalCount = sortedPiles.filter(
-    (p) => p.status === 'critical',
-  ).length;
-  const warningCount = sortedPiles.filter((p) => p.status === 'warning').length;
-  const okCount = sortedPiles.filter((p) => p.status === 'ok').length;
+  const pileCount = String(sortedPiles.length).padStart(2, '0');
 
   return (
     <div>
-      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+      <div className="mb-6 flex items-center justify-between border-b border-border pb-6">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight">
-            {UI_LABELS.PILE_MONITORING}
-          </h2>
-          <p className="mt-1.5 flex items-center gap-1.5 text-sm text-text-secondary">
-            <MapPin className="h-3.5 w-3.5" />
-            {SITE.name} · {SITE.address}
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary">
+            {UI_LABELS.ACTIVE_FACILITY}
+          </p>
+          <p className="mt-1 flex items-center gap-1.5 text-base font-semibold">
+            <MapPin className="h-4 w-4 text-text-secondary" />
+            {SITE.name}, Emek Hefer
           </p>
         </div>
-        <div className="flex items-center gap-4 rounded-xl bg-surface px-4 py-2.5 shadow-sm ring-1 ring-border/50">
-          <Activity className="h-4 w-4 text-accent" />
-          <div className="flex items-center gap-3 text-[12px] font-semibold">
-            {criticalCount > 0 && (
-              <span className="flex items-center gap-1.5 text-status-critical">
-                <span className="h-2 w-2 animate-pulse rounded-full bg-status-critical" />
-                {criticalCount} {STATUS_LABELS.critical}
-              </span>
-            )}
-            {warningCount > 0 && (
-              <span className="flex items-center gap-1.5 text-status-warning">
-                <span className="h-2 w-2 rounded-full bg-status-warning" />
-                {warningCount} {STATUS_LABELS.warning}
-              </span>
-            )}
-            <span className="flex items-center gap-1.5 text-status-ok">
-              <span className="h-2 w-2 rounded-full bg-status-ok" />
-              {okCount} {STATUS_LABELS.ok}
-            </span>
-          </div>
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-surface-secondary"
+          >
+            <Bell className="h-[18px] w-[18px]" />
+          </button>
+          <button
+            type="button"
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-surface-secondary"
+          >
+            <Settings className="h-[18px] w-[18px]" />
+          </button>
+        </div>
+      </div>
+
+      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h2 className="text-3xl font-bold tracking-tight">
+            {UI_LABELS.SITES_OVERVIEW}
+          </h2>
+          <p className="mt-1.5 text-sm text-text-secondary">
+            {UI_LABELS.SITES_SUBTITLE}
+          </p>
+        </div>
+        <div className="flex items-center gap-2 rounded-lg border border-border bg-surface px-4 py-2">
+          <span className="h-2 w-2 rounded-full bg-status-ok" />
+          <span className="text-xs font-bold uppercase tracking-wider">
+            {UI_LABELS.ACTIVE_PILES}: {pileCount}
+          </span>
         </div>
       </div>
 
