@@ -95,6 +95,9 @@ export const UI_LABELS = {
   ACTIVE_FACILITY: 'Active Facility',
   SITES_OVERVIEW: 'Sites Overview',
   SITES_SUBTITLE: 'Real-time status monitoring for grain storage clusters.',
+  GENERATE_REPORT: 'Generate Report',
+  SUPPORT: 'Support',
+  SIGN_OUT: 'Sign Out',
 } as const;
 
 // External data labels

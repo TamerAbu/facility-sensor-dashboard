@@ -1,8 +1,9 @@
 'use client';
 
 import {
+  HelpCircle,
   LayoutGrid,
-  MapPin,
+  LogOut,
   PanelLeftClose,
   PanelLeftOpen,
   Radio,
@@ -10,15 +11,17 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 
+import { UI_LABELS } from '@/lib/constants';
+
 import { NavLink } from './nav-link';
 
 interface SidebarProps {
   alertCount: number;
-  siteName: string;
+
   children: React.ReactNode;
 }
 
-export const Sidebar = ({ alertCount, siteName, children }: SidebarProps) => {
+export const Sidebar = ({ alertCount, children }: SidebarProps) => {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
@@ -80,19 +83,31 @@ export const Sidebar = ({ alertCount, siteName, children }: SidebarProps) => {
         </nav>
 
         <div className="border-t border-border px-4 py-4">
-          <div className="flex flex-col gap-2 overflow-hidden">
-            <div className="flex items-center gap-1.5 text-text-secondary">
-              <MapPin className="h-3 w-3 shrink-0" />
-              <span className="whitespace-nowrap text-xs">
-                {siteName}, Emek Hefer
+          <div className="flex flex-col gap-3 overflow-hidden">
+            <button
+              type="button"
+              className="w-full rounded-xl bg-foreground px-4 py-2.5 text-[11px] font-bold uppercase tracking-wider text-white transition-opacity hover:opacity-80"
+            >
+              {UI_LABELS.GENERATE_REPORT}
+            </button>
+            <button
+              type="button"
+              className="flex items-center gap-2.5 px-1 text-text-secondary transition-colors hover:text-foreground"
+            >
+              <HelpCircle className="h-4 w-4 shrink-0" />
+              <span className="whitespace-nowrap text-xs font-semibold uppercase tracking-wider">
+                {UI_LABELS.SUPPORT}
               </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-status-ok" />
-              <span className="whitespace-nowrap text-xs text-text-secondary">
-                All systems operational
+            </button>
+            <button
+              type="button"
+              className="flex items-center gap-2.5 px-1 text-status-critical transition-opacity hover:opacity-70"
+            >
+              <LogOut className="h-4 w-4 shrink-0" />
+              <span className="whitespace-nowrap text-xs font-semibold uppercase tracking-wider">
+                {UI_LABELS.SIGN_OUT}
               </span>
-            </div>
+            </button>
           </div>
         </div>
       </aside>

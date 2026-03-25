@@ -13,9 +13,5 @@ export const AppShell = ({ children }: AppShellProps) => {
   const processedPiles = processSiteData(SITE.piles);
   const alerts = generateAlerts(processedPiles);
 
-  return (
-    <Sidebar alertCount={alerts.length} siteName={SITE.name}>
-      {children}
-    </Sidebar>
-  );
+  return <Sidebar alertCount={alerts.length}>{children}</Sidebar>;
 };
