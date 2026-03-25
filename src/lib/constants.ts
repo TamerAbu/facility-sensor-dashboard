@@ -208,6 +208,33 @@ export const PILE_COORDINATES: Record<string, GeoCoordinate> = {
 export const MAP_CENTER: GeoCoordinate = { lat: 32.3915, lng: 34.88 };
 export const MAP_DEFAULT_ZOOM = 17;
 
+// Economic urgency calculation
+export const PILE_CAPACITY_TONNES = 3000;
+export const TONNES_TO_BUSHELS_FACTOR = 36.74;
+
+// Display range ceiling for bar charts
+export const TEMP_DISPLAY_CEILING = 70;
+
+// Facility gauge labels
+export const GAUGE_LABELS = {
+  AVG_TEMPERATURE: 'Avg Temperature',
+  AVG_MOISTURE: 'Avg Moisture',
+  SENSOR_HEALTH: 'Sensor Health',
+  ACTIVE_ALERTS: 'Active Alerts',
+  NORMAL: 'Normal',
+  ELEVATED: 'Elevated',
+  CRITICAL_LEVEL: 'Critical',
+  FAULTY_SENSORS: 'Faulty',
+  NO_ALERTS: 'All Clear',
+} as const;
+
+// Gauge range limits
+export const GAUGE_TEMP_MAX = 60;
+export const GAUGE_MOISTURE_MAX = 25;
+export const GAUGE_HEALTH_MIN = 0;
+export const GAUGE_HEALTH_MAX = 100;
+export const GAUGE_ALERTS_MAX = 10;
+
 // Grain types
 export const GRAIN_TYPES = {
   WHEAT: 'Wheat',

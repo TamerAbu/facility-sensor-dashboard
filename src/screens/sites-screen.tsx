@@ -8,8 +8,9 @@ import {
   WEATHER_DATA,
 } from '@/lib/mock-data';
 import type { PileStatus } from '@/lib/types';
-import { processSiteData } from '@/lib/risk-engine';
+import { generateAlerts, processSiteData } from '@/lib/risk-engine';
 import { ExternalContextBar } from '@/features/sites/external-context';
+import { FacilityGauges } from '@/features/sites/facility-gauges';
 import { SitesViewSwitcher } from '@/features/sites/sites-view-switcher';
 import { HeaderActions } from '@/shared/components/header-actions';
 
@@ -24,6 +25,7 @@ export const SitesScreen = () => {
   const sortedPiles = [...processedPiles].sort(
     (a, b) => SEVERITY_ORDER[a.status] - SEVERITY_ORDER[b.status],
   );
+  const alerts = generateAlerts(processedPiles);
 
   const pileCount = String(sortedPiles.length).padStart(2, '0');
 
@@ -67,6 +69,10 @@ export const SitesScreen = () => {
       />
 
       <SitesViewSwitcher piles={sortedPiles} />
+
+      <div className="mt-8">
+        <FacilityGauges piles={sortedPiles} alerts={alerts} />
+      </div>
     </div>
   );
 };
