@@ -39,8 +39,8 @@ export const SitesScreen = () => {
           </p>
         </div>
         <div className="flex items-center gap-4">
-          <Bell className="h-5 w-5 text-foreground/70" />
-          <Settings className="h-5 w-5 text-foreground/70" />
+          <Bell className="h-5 w-5 text-foreground" strokeWidth={2.5} />
+          <Settings className="h-5 w-5 text-foreground" strokeWidth={2.5} />
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-foreground">
             <User className="h-5 w-5 text-white" />
           </div>
