@@ -33,8 +33,8 @@ export const SitesScreen = () => {
           <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary">
             {UI_LABELS.ACTIVE_FACILITY}
           </p>
-          <p className="mt-1 flex items-center gap-1.5 text-base font-semibold">
-            <MapPin className="h-4 w-4 text-text-secondary" />
+          <p className="mt-1 flex items-center gap-2 text-lg font-bold">
+            <MapPin className="h-5 w-5" />
             {SITE.name}, Emek Hefer
           </p>
         </div>
